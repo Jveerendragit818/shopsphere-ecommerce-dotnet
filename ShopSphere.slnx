@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Database/" />
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Project Path="ShopSphere.API/ShopSphere.API.csproj" />
+  <Project Path="ShopSphere.Core/ShopSphere.Core.csproj" />
+  <Project Path="ShopSphere.Data/ShopSphere.Data.csproj" />
+  <Project Path="ShopSphere.Web/ShopSphere.Web.csproj" />
+</Solution>

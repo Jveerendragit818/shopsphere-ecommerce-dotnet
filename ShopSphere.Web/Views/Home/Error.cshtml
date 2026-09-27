@@ -1,0 +1,26 @@
+﻿@model ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<section class="phase-one">
+    <div class="container">
+        <div class="phase-one-card">
+            <span class="phase-one-badge">ERROR</span>
+
+            <h1>Something went wrong</h1>
+
+            <p class="phase-one-subtitle">
+                An unexpected error occurred.
+            </p>
+
+            @if (Model.ShowRequestId)
+            {
+                <p class="request-id">
+                    Request ID: @Model.RequestId
+                </p>
+            }
+        </div>
+    </div>
+</section>

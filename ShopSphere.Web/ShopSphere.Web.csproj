@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopSphere.Core\ShopSphere.Core.csproj" />
+    <ProjectReference Include="..\ShopSphere.Data\ShopSphere.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Cart\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Order\" />
+    <Folder Include="Views\Wishlist\" />
+    <Folder Include="Views\Product\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+</Project>
