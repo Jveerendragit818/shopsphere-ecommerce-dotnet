@@ -1,0 +1,238 @@
+﻿@{
+    ViewData["Title"] = "Customer Dashboard";
+}
+
+<section class="ss-account-dashboard">
+
+    <div class="ss-account-heading">
+        <div>
+            <span class="ss-section-eyebrow">MY ACCOUNT</span>
+            <h1>Welcome back, Veerendra.</h1>
+            <p>Manage your orders, wishlist and account preferences from one place.</p>
+        </div>
+
+        <a asp-controller="Product" asp-action="Index" class="ss-dashboard-shop-button">
+            Continue Shopping
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+            </svg>
+        </a>
+    </div>
+
+    <div class="ss-dashboard-stats">
+
+        <article class="ss-dashboard-stat">
+            <div class="ss-dashboard-stat-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 3h12v18H6z"></path>
+                    <path d="M9 7h6M9 11h6M9 15h4"></path>
+                </svg>
+            </div>
+            <div>
+                <span>Total Orders</span>
+                <strong>12</strong>
+            </div>
+        </article>
+
+        <article class="ss-dashboard-stat">
+            <div class="ss-dashboard-stat-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.8 8.8c0 5.2-8.8 10.2-8.8 10.2S3.2 14 3.2 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"></path>
+                </svg>
+            </div>
+            <div>
+                <span>Wishlist Items</span>
+                <strong>5</strong>
+            </div>
+        </article>
+
+        <article class="ss-dashboard-stat">
+            <div class="ss-dashboard-stat-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 5h16v15H4z"></path>
+                    <path d="M8 9h8M8 13h6M8 17h4"></path>
+                </svg>
+            </div>
+            <div>
+                <span>Reviews</span>
+                <strong>8</strong>
+            </div>
+        </article>
+
+        <article class="ss-dashboard-stat">
+            <div class="ss-dashboard-stat-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="8"></circle>
+                    <path d="M12 8v5l3 2"></path>
+                </svg>
+            </div>
+            <div>
+                <span>Pending Orders</span>
+                <strong>2</strong>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="ss-dashboard-main-grid">
+
+        <section class="ss-dashboard-card ss-recent-orders">
+            <div class="ss-dashboard-card-heading">
+                <div>
+                    <span class="ss-section-eyebrow">ORDER ACTIVITY</span>
+                    <h2>Recent Orders</h2>
+                </div>
+
+                <a asp-controller="Account" asp-action="Orders">View all</a>
+            </div>
+
+            <div class="ss-order-list">
+
+                <article class="ss-dashboard-order">
+                    <div class="ss-order-product">
+                        <div class="ss-order-product-image">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" alt="Wireless Headphones" />
+                        </div>
+                        <div>
+                            <strong>Wireless Headphones</strong>
+                            <span>Order #SS1028 · 02 Oct 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="ss-order-meta">
+                        <strong>₹4,999</strong>
+                        <span class="ss-status-badge ss-status-shipped">Shipped</span>
+                    </div>
+                </article>
+
+                <article class="ss-dashboard-order">
+                    <div class="ss-order-product">
+                        <div class="ss-order-product-image">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" alt="Smart Watch" />
+                        </div>
+                        <div>
+                            <strong>Smart Watch Pro</strong>
+                            <span>Order #SS1024 · 29 Sep 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="ss-order-meta">
+                        <strong>₹7,499</strong>
+                        <span class="ss-status-badge ss-status-delivered">Delivered</span>
+                    </div>
+                </article>
+
+                <article class="ss-dashboard-order">
+                    <div class="ss-order-product">
+                        <div class="ss-order-product-image">
+                            <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=500&q=80" alt="Casual Jacket" />
+                        </div>
+                        <div>
+                            <strong>Classic Casual Jacket</strong>
+                            <span>Order #SS1018 · 24 Sep 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="ss-order-meta">
+                        <strong>₹3,299</strong>
+                        <span class="ss-status-badge ss-status-delivered">Delivered</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="ss-dashboard-card ss-account-card">
+            <div class="ss-dashboard-card-heading">
+                <div>
+                    <span class="ss-section-eyebrow">ACCOUNT</span>
+                    <h2>Account Snapshot</h2>
+                </div>
+            </div>
+
+            <div class="ss-account-profile">
+                <div class="ss-account-avatar">V</div>
+                <div>
+                    <strong>Veerendra K.</strong>
+                    <span>veeren@example.com</span>
+                </div>
+            </div>
+
+            <div class="ss-account-details">
+                <div>
+                    <span>Phone</span>
+                    <strong>+91 98765 43210</strong>
+                </div>
+                <div>
+                    <span>Account Status</span>
+                    <strong class="ss-account-active">Active</strong>
+                </div>
+            </div>
+
+            <div class="ss-account-actions">
+                <a asp-controller="Account" asp-action="Profile">View Profile</a>
+                <a asp-controller="Account" asp-action="Addresses">Manage Addresses</a>
+                <a asp-controller="Account" asp-action="Security">Security Settings</a>
+            </div>
+        </section>
+
+    </div>
+
+    <section class="ss-dashboard-quick-actions">
+        <div class="ss-dashboard-card-heading">
+            <div>
+                <span class="ss-section-eyebrow">QUICK ACCESS</span>
+                <h2>Manage your ShopSphere account</h2>
+            </div>
+        </div>
+
+        <div class="ss-quick-action-grid">
+
+            <a asp-controller="Account" asp-action="Orders" class="ss-quick-action">
+                <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 3h12v18H6z"></path>
+                        <path d="M9 7h6M9 11h6M9 15h4"></path>
+                    </svg>
+                </div>
+                <span>My Orders</span>
+                <small>Track recent purchases</small>
+            </a>
+
+            <a asp-controller="Account" asp-action="Wishlist" class="ss-quick-action">
+                <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.8 8.8c0 5.2-8.8 10.2-8.8 10.2S3.2 14 3.2 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"></path>
+                    </svg>
+                </div>
+                <span>Wishlist</span>
+                <small>View saved products</small>
+            </a>
+
+            <a asp-controller="Account" asp-action="Addresses" class="ss-quick-action">
+                <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"></path>
+                        <circle cx="12" cy="9" r="2.5"></circle>
+                    </svg>
+                </div>
+                <span>Addresses</span>
+                <small>Manage delivery addresses</small>
+            </a>
+
+            <a asp-controller="Account" asp-action="Profile" class="ss-quick-action">
+                <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3.5"></circle>
+                        <path d="M5 20c.8-3.4 3.1-5 7-5s6.2 1.6 7 5"></path>
+                    </svg>
+                </div>
+                <span>Profile</span>
+                <small>Update personal information</small>
+            </a>
+
+        </div>
+    </section>
+
+</section>

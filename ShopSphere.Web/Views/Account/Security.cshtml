@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Security";
+}
+
+<section class="ss-account-page ss-security-page">
+    <div class="ss-account-header">
+        <div>
+            <span class="ss-section-eyebrow">Account Settings</span>
+            <h1>Security</h1>
+            <p>Manage your password and keep your ShopSphere account secure.</p>
+        </div>
+    </div>
+
+    <div class="ss-security-layout">
+        <div class="ss-security-card">
+            <div class="ss-security-card-header">
+                <div class="ss-security-card-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+                        <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2>Change Password</h2>
+                    <p>Update your account password from here.</p>
+                </div>
+            </div>
+
+            <form id="securityForm" novalidate>
+                <div class="ss-security-field">
+                    <label for="currentPassword">Current Password</label>
+                    <div class="ss-password-field">
+                        <input type="password" id="currentPassword" class="ss-form-control" placeholder="Enter current password">
+                        <button type="button" class="ss-password-toggle" data-target="currentPassword" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path>
+                                <circle cx="12" cy="12" r="2.5"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="ss-security-error" id="currentPasswordError"></span>
+                </div>
+
+                <div class="ss-security-field">
+                    <label for="newPassword">New Password</label>
+                    <div class="ss-password-field">
+                        <input type="password" id="newPassword" class="ss-form-control" placeholder="Enter new password">
+                        <button type="button" class="ss-password-toggle" data-target="newPassword" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path>
+                                <circle cx="12" cy="12" r="2.5"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="ss-security-hint">Use at least 8 characters with a mix of letters and numbers.</span>
+                    <span class="ss-security-error" id="newPasswordError"></span>
+                </div>
+
+                <div class="ss-security-field">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="ss-password-field">
+                        <input type="password" id="confirmPassword" class="ss-form-control" placeholder="Re-enter new password">
+                        <button type="button" class="ss-password-toggle" data-target="confirmPassword" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path>
+                                <circle cx="12" cy="12" r="2.5"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="ss-security-error" id="confirmPasswordError"></span>
+                </div>
+
+                <div class="ss-security-actions">
+                    <button type="submit" class="ss-btn ss-btn-primary">Save Changes</button>
+                </div>
+
+                <div class="ss-security-success" id="securitySuccess" hidden>
+                    Password updated successfully in this frontend prototype.
+                </div>
+            </form>
+        </div>
+
+        <div class="ss-security-info">
+            <div class="ss-security-info-card">
+                <span class="ss-section-eyebrow">Security Tips</span>
+                <h3>Keep your account protected</h3>
+                <div class="ss-security-tip">
+                    <span>01</span>
+                    <p>Use a unique password for your ShopSphere account.</p>
+                </div>
+                <div class="ss-security-tip">
+                    <span>02</span>
+                    <p>Avoid using easily guessed personal information.</p>
+                </div>
+                <div class="ss-security-tip">
+                    <span>03</span>
+                    <p>Do not share your password with anyone.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  

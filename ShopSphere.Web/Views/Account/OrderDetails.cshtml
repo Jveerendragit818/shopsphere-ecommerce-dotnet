@@ -1,0 +1,175 @@
+﻿@model IEnumerable<ShopSphere.Web.Models.ProductViewModel>
+@using System.Text.Json
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Order Details";
+    var orderProductsJson = JsonSerializer.Serialize(Model);
+}
+
+<div class="ss-order-details-page">
+    <div class="ss-order-details-header">
+        <div>
+            <span class="ss-section-eyebrow">Order details</span>
+            <h1 id="orderDetailsHeading">Order Details</h1>
+            <p id="orderDetailsSubheading">Review your order information and purchased items.</p>
+        </div>
+
+        <div class="ss-order-details-header-actions">
+            <a href="/account/orders" class="ss-outline-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 12H5"></path>
+                    <path d="m11 18-6-6 6-6"></path>
+                </svg>
+                Back to Orders
+            </a>
+
+            <a href="#" id="orderTrackButton" class="ss-primary-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6h11v11H3z"></path>
+                    <path d="M14 10h4l3 3v4h-7"></path>
+                    <circle cx="7" cy="19" r="1.5"></circle>
+                    <circle cx="18" cy="19" r="1.5"></circle>
+                </svg>
+                Track Order
+            </a>
+        </div>
+    </div>
+
+    <div class="ss-order-details-status-card">
+        <div>
+            <span class="ss-order-detail-label">Order ID</span>
+            <strong id="orderDetailsId">SS-000000</strong>
+        </div>
+
+        <div>
+            <span class="ss-order-detail-label">Placed On</span>
+            <strong id="orderDetailsDate">--</strong>
+        </div>
+
+        <div>
+            <span class="ss-order-detail-label">Payment</span>
+            <strong id="orderDetailsPayment">--</strong>
+        </div>
+
+        <div>
+            <span class="ss-order-detail-label">Status</span>
+            <span class="ss-order-status confirmed" id="orderDetailsStatus">Confirmed</span>
+        </div>
+    </div>
+
+    <div class="ss-order-details-layout">
+        <div class="ss-order-details-main">
+            <section class="ss-order-details-card">
+                <div class="ss-order-details-card-head">
+                    <div>
+                        <span class="ss-section-eyebrow">Purchased items</span>
+                        <h2>Items in this order</h2>
+                    </div>
+
+                    <span class="ss-order-items-count" id="orderItemsCount">0 items</span>
+                </div>
+
+                <div class="ss-order-items" id="orderItems"></div>
+            </section>
+
+            <section class="ss-order-details-card">
+                <div class="ss-order-details-card-head">
+                    <div>
+                        <span class="ss-section-eyebrow">Delivery</span>
+                        <h2>Shipping address</h2>
+                    </div>
+                </div>
+
+                <div class="ss-order-address">
+                    <div class="ss-order-address-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"></path>
+                            <circle cx="12" cy="9" r="2.3"></circle>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <strong id="orderAddressName">Veerendra Kadiyala</strong>
+                        <span id="orderAddressLine">21 Lake View Road, Rajkot, Gujarat 360001</span>
+                        <span id="orderAddressPhone">+91 98765 43210</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ss-order-details-card">
+                <div class="ss-order-details-card-head">
+                    <div>
+                        <span class="ss-section-eyebrow">Customer</span>
+                        <h2>Customer information</h2>
+                    </div>
+                </div>
+
+                <div class="ss-order-customer-grid">
+                    <div>
+                        <span>Full Name</span>
+                        <strong id="orderCustomerName">Veerendra Kadiyala</strong>
+                    </div>
+
+                    <div>
+                        <span>Email</span>
+                        <strong id="orderCustomerEmail">veerendra@example.com</strong>
+                    </div>
+
+                    <div>
+                        <span>Phone</span>
+                        <strong id="orderCustomerPhone">+91 98765 43210</strong>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <aside class="ss-order-details-sidebar">
+            <section class="ss-order-total-card">
+                <div class="ss-order-details-card-head">
+                    <div>
+                        <span class="ss-section-eyebrow">Summary</span>
+                        <h2>Order total</h2>
+                    </div>
+                </div>
+
+                <div class="ss-order-summary-lines">
+                    <div>
+                        <span>Subtotal</span>
+                        <strong id="orderSubtotal">₹0</strong>
+                    </div>
+
+                    <div>
+                        <span>Delivery</span>
+                        <strong id="orderDelivery">Free</strong>
+                    </div>
+                </div>
+
+                <div class="ss-order-final-total">
+                    <span>Total</span>
+                    <strong id="orderTotal">₹0</strong>
+                </div>
+            </section>
+
+            <section class="ss-order-help-card">
+                <div class="ss-order-help-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M9.5 9a2.5 2.5 0 1 1 4 2c-1.2.7-1.5 1.2-1.5 2.5"></path>
+                        <path d="M12 17h.01"></path>
+                    </svg>
+                </div>
+
+                <h3>Need help?</h3>
+                <p>Order support and assistance can be connected here later.</p>
+                <button type="button" class="ss-order-support-btn" id="orderSupportButton">
+                    Contact Support
+                </button>
+            </section>
+        </aside>
+    </div>
+</div>
+
+<script>
+    const orderDetailsProducts = @Html.Raw(orderProductsJson);
+</script>

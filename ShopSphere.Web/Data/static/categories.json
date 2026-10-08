@@ -1,0 +1,50 @@
+[
+  {
+    "Id": 1,
+    "Name": "Electronics",
+    "Description": "Smart devices, audio, accessories and technology for everyday life.",
+    "Image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1000&q=85",
+    "ProductCount": 42,
+    "Featured": true
+  },
+  {
+    "Id": 2,
+    "Name": "Fashion",
+    "Description": "Modern clothing and everyday essentials for every style.",
+    "Image": "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=85",
+    "ProductCount": 36,
+    "Featured": false
+  },
+  {
+    "Id": 3,
+    "Name": "Jewellery",
+    "Description": "Elegant pieces designed for everyday wear and special occasions.",
+    "Image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=85",
+    "ProductCount": 24,
+    "Featured": true
+  },
+  {
+    "Id": 4,
+    "Name": "Shoes",
+    "Description": "Comfortable footwear for daily movement, work and performance.",
+    "Image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=85",
+    "ProductCount": 31,
+    "Featured": false
+  },
+  {
+    "Id": 5,
+    "Name": "Accessories",
+    "Description": "Finishing touches that bring together your everyday look.",
+    "Image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85",
+    "ProductCount": 28,
+    "Featured": false
+  },
+  {
+    "Id": 6,
+    "Name": "Home Appliances",
+    "Description": "Useful home technology designed to make everyday living easier.",
+    "Image": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1000&q=85",
+    "ProductCount": 19,
+    "Featured": true
+  }
+]

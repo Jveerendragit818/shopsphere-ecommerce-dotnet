@@ -1,0 +1,309 @@
+﻿@model IEnumerable<ShopSphere.Web.Models.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Search Results";
+    var searchQuery = ViewBag.SearchQuery as string ?? "";
+}
+
+<section class="ss-search-results-page">
+
+    <div class="ss-search-results-header">
+        <div class="ss-search-results-heading">
+            <span class="ss-section-eyebrow">SEARCH</span>
+
+            <h1>Find what you're looking for.</h1>
+
+            @if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                <p>
+                    Showing results for
+                    <strong>"@searchQuery"</strong>
+                </p>
+            }
+            else
+            {
+                <p>Explore products across ShopSphere.</p>
+            }
+        </div>
+
+        <div class="ss-search-results-form">
+            <div class="ss-search-results-input-wrap">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5"></circle>
+                    <path d="M16 16l5 5"></path>
+                </svg>
+
+                <input type="search"
+                       id="searchResultsInput"
+                       value="@searchQuery"
+                       placeholder="Search products, brands or categories..."
+                       autocomplete="off" />
+
+                <button type="button" id="searchResultsButton">
+                    Search
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="ss-search-results-toolbar">
+
+        <div class="ss-search-results-summary">
+            <strong id="searchResultCount">0 results</strong>
+            <span id="searchVisibleCount">0 results</span>
+        </div>
+
+        <div class="ss-search-results-controls">
+
+            <button type="button"
+                    id="searchFilterOpen"
+                    class="ss-search-filter-open">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 6h16M7 12h10M10 18h4"></path>
+                </svg>
+
+                Filters
+            </button>
+
+            <div class="ss-search-sort-wrap">
+                <label for="searchSort">Sort</label>
+
+                <select id="searchSort">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="name">Name: A-Z</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="searchActiveFilters"
+         class="ss-search-active-filters">
+    </div>
+
+    <div class="ss-search-results-layout">
+
+        <aside id="searchFilters"
+               class="ss-search-filters">
+
+            <div class="ss-search-filters-header">
+
+                <div>
+                    <span class="ss-section-eyebrow">FILTERS</span>
+                    <h2>Refine Results</h2>
+                </div>
+
+                <button type="button"
+                        id="searchFilterClose"
+                        class="ss-search-filter-close"
+                        aria-label="Close filters">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="ss-search-filter-section">
+
+                <div class="ss-search-filter-title">
+                    <span>Category</span>
+                </div>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="Electronics"
+                           data-search-category />
+                    <span>Electronics</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="Fashion"
+                           data-search-category />
+                    <span>Fashion</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="Jewellery"
+                           data-search-category />
+                    <span>Jewellery</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="Shoes"
+                           data-search-category />
+                    <span>Shoes</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="Accessories"
+                           data-search-category />
+                    <span>Accessories</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="Home Appliances"
+                           data-search-category />
+                    <span>Home Appliances</span>
+                </label>
+
+            </div>
+
+            <div class="ss-search-filter-section">
+
+                <div class="ss-search-filter-title">
+                    <span>Price</span>
+                    <strong id="searchPriceValue">₹10,000</strong>
+                </div>
+
+                <input type="range"
+                       id="searchPriceFilter"
+                       min="500"
+                       max="10000"
+                       step="100"
+                       value="10000" />
+
+                <div class="ss-search-price-range">
+                    <span>₹500</span>
+                    <span>₹10,000</span>
+                </div>
+
+            </div>
+
+            <div class="ss-search-filter-section">
+
+                <div class="ss-search-filter-title">
+                    <span>Rating</span>
+                </div>
+
+                <label class="ss-search-filter-option">
+                    <input type="radio"
+                           name="searchRating"
+                           value="0"
+                           checked />
+                    <span>All Ratings</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="radio"
+                           name="searchRating"
+                           value="4" />
+                    <span>4★ &amp; above</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="radio"
+                           name="searchRating"
+                           value="3" />
+                    <span>3★ &amp; above</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="radio"
+                           name="searchRating"
+                           value="2" />
+                    <span>2★ &amp; above</span>
+                </label>
+
+            </div>
+
+            <div class="ss-search-filter-section">
+
+                <div class="ss-search-filter-title">
+                    <span>Availability</span>
+                </div>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="In Stock"
+                           data-search-availability />
+                    <span>In Stock</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="Low Stock"
+                           data-search-availability />
+                    <span>Low Stock</span>
+                </label>
+
+                <label class="ss-search-filter-option">
+                    <input type="checkbox"
+                           value="Out of Stock"
+                           data-search-availability />
+                    <span>Out of Stock</span>
+                </label>
+
+            </div>
+
+            <button type="button"
+                    id="searchClearFilters"
+                    class="ss-search-clear-filters">
+                Clear All Filters
+            </button>
+
+        </aside>
+
+        <div id="searchFilterOverlay"
+             class="ss-search-filter-overlay">
+        </div>
+
+        <main class="ss-search-results-main">
+
+            <div id="searchProductGrid"
+                 class="ss-search-product-grid">
+            </div>
+
+            <div id="searchEmpty"
+                 class="ss-search-empty">
+
+                <div class="ss-search-empty-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5"></circle>
+                        <path d="M16 16l5 5"></path>
+                    </svg>
+
+                </div>
+
+                <span class="ss-section-eyebrow">NO RESULTS</span>
+
+                <h2>We couldn't find that.</h2>
+
+                <p>
+                    Try another search term or remove some filters
+                    to discover more products.
+                </p>
+
+                <button type="button"
+                        id="searchEmptyClear"
+                        class="ss-search-empty-button">
+                    Browse All Products
+                </button>
+
+            </div>
+
+            <div id="searchPagination"
+                 class="ss-search-pagination">
+            </div>
+
+        </main>
+
+    </div>
+
+</section>
+
+<script>
+    const searchProducts = @Html.Raw(
+                System.Text.Json.JsonSerializer.Serialize(Model)
+        );
+</script>

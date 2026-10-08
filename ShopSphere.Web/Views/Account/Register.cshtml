@@ -1,0 +1,138 @@
+﻿@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewData["Title"] = "Create Account";
+}
+
+<section class="ss-auth-page ss-register-page">
+    <div class="ss-auth-card ss-register-card">
+        <div class="ss-auth-header">
+            <span class="ss-auth-eyebrow">Join ShopSphere</span>
+            <h1>Create your account</h1>
+            <p>Set up your ShopSphere account to manage orders, wishlist items and your shopping preferences.</p>
+        </div>
+
+        @if (ViewBag.RegisterError != null)
+        {
+            <div class="ss-auth-error">
+                @ViewBag.RegisterError
+            </div>
+        }
+
+        <form asp-controller="Account" asp-action="Register" method="post" class="ss-auth-form">
+            <div class="ss-form-group">
+                <label for="fullName">Full Name</label>
+                <div class="ss-input-wrap">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3.5"></circle>
+                        <path d="M5 20c.8-3.4 3.1-5 7-5s6.2 1.6 7 5"></path>
+                    </svg>
+                    <input type="text" id="fullName" name="fullName" value="@ViewBag.FullName" placeholder="Enter your full name" required />
+                </div>
+            </div>
+
+            <div class="ss-register-row">
+                <div class="ss-form-group">
+                    <label for="email">Email Address</label>
+                    <div class="ss-input-wrap">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 6h16v12H4z"></path>
+                            <path d="m4 7 8 6 8-6"></path>
+                        </svg>
+                        <input type="email" id="email" name="email" value="@ViewBag.Email" placeholder="Enter your email" required />
+                    </div>
+                </div>
+
+                <div class="ss-form-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="ss-input-wrap">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="7" y="3.5" width="10" height="17" rx="2"></rect>
+                            <path d="M10 17h4"></path>
+                        </svg>
+                        <input type="tel" id="phone" name="phone" value="@ViewBag.Phone" placeholder="Enter your phone" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="ss-register-row">
+                <div class="ss-form-group">
+                    <label for="password">Password</label>
+                    <div class="ss-input-wrap">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+                            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                        </svg>
+                        <input type="password" id="password" name="password" placeholder="Create a password" required />
+                        <button type="button" class="ss-password-toggle" id="passwordToggle" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path>
+                                <circle cx="12" cy="12" r="2.5"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="ss-form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="ss-input-wrap">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+                            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                        </svg>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required />
+                        <button type="button" class="ss-password-toggle" id="confirmPasswordToggle" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path>
+                                <circle cx="12" cy="12" r="2.5"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <label class="ss-check ss-register-terms">
+                <input type="checkbox" name="terms" value="true" required />
+                <span>I agree to the Terms &amp; Conditions and Privacy Policy.</span>
+            </label>
+
+            <button type="submit" class="ss-auth-submit">
+                Create Account
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h14"></path>
+                    <path d="m13 6 6 6-6 6"></path>
+                </svg>
+            </button>
+        </form>
+
+        <div class="ss-auth-divider">
+            <span>Already have an account?</span>
+        </div>
+
+        <a asp-controller="Account" asp-action="Login" class="ss-auth-register">
+            Sign in to ShopSphere
+        </a>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const password = document.getElementById("password");
+            const confirmPassword = document.getElementById("confirmPassword");
+            const passwordToggle = document.getElementById("passwordToggle");
+            const confirmPasswordToggle = document.getElementById("confirmPasswordToggle");
+
+            if (passwordToggle && password) {
+                passwordToggle.addEventListener("click", function () {
+                    password.type = password.type === "password" ? "text" : "password";
+                });
+            }
+
+            if (confirmPasswordToggle && confirmPassword) {
+                confirmPasswordToggle.addEventListener("click", function () {
+                    confirmPassword.type = confirmPassword.type === "password" ? "text" : "password";
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,230 @@
+﻿@{
+    ViewData["Title"] = "Addresses";
+}
+
+<section class="ss-addresses-page">
+    <div class="ss-addresses-heading">
+        <div>
+            <span class="ss-section-eyebrow">MY ACCOUNT</span>
+            <h1>My Addresses</h1>
+            <p>Manage the delivery addresses you use for your ShopSphere orders.</p>
+        </div>
+
+        <button type="button" class="ss-address-add-button" id="addAddressButton">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 5v14M5 12h14"></path>
+            </svg>
+            Add New Address
+        </button>
+    </div>
+
+    <div class="ss-address-summary">
+        <div>
+            <span class="ss-address-summary-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"></path>
+                    <circle cx="12" cy="9" r="2.5"></circle>
+                </svg>
+            </span>
+            <div>
+                <strong>3 saved addresses</strong>
+                <span>Choose your preferred delivery location at checkout.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ss-address-grid" id="addressGrid">
+
+        <article class="ss-address-card ss-address-default" data-address-id="1">
+            <div class="ss-address-card-top">
+                <div>
+                    <span class="ss-address-type">HOME</span>
+                    <h2>Home Address</h2>
+                </div>
+                <span class="ss-address-default-badge">Default</span>
+            </div>
+
+            <div class="ss-address-body">
+                <strong>Veerendra Kadiyala</strong>
+                <p>12 Green Park Society</p>
+                <p>Near Main Road</p>
+                <p>Rajkot, Gujarat 360001</p>
+                <p>India</p>
+                <span class="ss-address-phone">+91 98765 43210</span>
+            </div>
+
+            <div class="ss-address-actions">
+                <button type="button" class="ss-address-action ss-edit-address" data-address-id="1">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m4 16 9.5-9.5 4 4L8 20H4v-4Z"></path>
+                        <path d="m14 6 2-2a2 2 0 0 1 3 3l-2 2"></path>
+                    </svg>
+                    Edit
+                </button>
+
+                <button type="button" class="ss-address-action ss-delete-address" data-address-id="1">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 7h14M10 11v5M14 11v5"></path>
+                        <path d="m9 7 1-3h4l1 3M7 7l1 14h8l1-14"></path>
+                    </svg>
+                    Delete
+                </button>
+            </div>
+        </article>
+
+        <article class="ss-address-card" data-address-id="2">
+            <div class="ss-address-card-top">
+                <div>
+                    <span class="ss-address-type">OFFICE</span>
+                    <h2>Office Address</h2>
+                </div>
+            </div>
+
+            <div class="ss-address-body">
+                <strong>Veerendra Kadiyala</strong>
+                <p>Tech Park Building, 2nd Floor</p>
+                <p>Ring Road</p>
+                <p>Rajkot, Gujarat 360005</p>
+                <p>India</p>
+                <span class="ss-address-phone">+91 98765 43210</span>
+            </div>
+
+            <div class="ss-address-actions">
+                <button type="button" class="ss-address-action ss-set-default" data-address-id="2">Set as Default</button>
+
+                <button type="button" class="ss-address-action ss-edit-address" data-address-id="2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m4 16 9.5-9.5 4 4L8 20H4v-4Z"></path>
+                        <path d="m14 6 2-2a2 2 0 0 1 3 3l-2 2"></path>
+                    </svg>
+                    Edit
+                </button>
+
+                <button type="button" class="ss-address-action ss-delete-address" data-address-id="2">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 7h14M10 11v5M14 11v5"></path>
+                        <path d="m9 7 1-3h4l1 3M7 7l1 14h8l1-14"></path>
+                    </svg>
+                    Delete
+                </button>
+            </div>
+        </article>
+
+        <article class="ss-address-card" data-address-id="3">
+            <div class="ss-address-card-top">
+                <div>
+                    <span class="ss-address-type">FAMILY</span>
+                    <h2>Family Address</h2>
+                </div>
+            </div>
+
+            <div class="ss-address-body">
+                <strong>Veerendra Kadiyala</strong>
+                <p>45 Sunrise Residency</p>
+                <p>University Road</p>
+                <p>Ahmedabad, Gujarat 380015</p>
+                <p>India</p>
+                <span class="ss-address-phone">+91 98765 43210</span>
+            </div>
+
+            <div class="ss-address-actions">
+                <button type="button" class="ss-address-action ss-set-default" data-address-id="3">Set as Default</button>
+
+                <button type="button" class="ss-address-action ss-edit-address" data-address-id="3">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m4 16 9.5-9.5 4 4L8 20H4v-4Z"></path>
+                        <path d="m14 6 2-2a2 2 0 0 1 3 3l-2 2"></path>
+                    </svg>
+                    Edit
+                </button>
+
+                <button type="button" class="ss-address-action ss-delete-address" data-address-id="3">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 7h14M10 11v5M14 11v5"></path>
+                        <path d="m9 7 1-3h4l1 3M7 7l1 14h8l1-14"></path>
+                    </svg>
+                    Delete
+                </button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<div class="ss-address-modal" id="addressModal">
+    <div class="ss-address-modal-backdrop" id="addressModalBackdrop"></div>
+
+    <div class="ss-address-modal-card">
+        <div class="ss-address-modal-header">
+            <div>
+                <span class="ss-section-eyebrow">ADDRESS</span>
+                <h2 id="addressModalTitle">Add New Address</h2>
+            </div>
+
+            <button type="button" id="addressModalClose" class="ss-address-modal-close">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6 6 18"></path>
+                </svg>
+            </button>
+        </div>
+
+        <form id="addressForm" class="ss-address-form">
+            <input type="hidden" id="addressId" />
+
+            <div class="ss-address-form-row">
+                <div class="ss-form-group">
+                    <label for="addressName">Full Name</label>
+                    <input type="text" id="addressName" placeholder="Enter full name" required />
+                </div>
+
+                <div class="ss-form-group">
+                    <label for="addressPhone">Phone Number</label>
+                    <input type="tel" id="addressPhone" placeholder="Enter phone number" required />
+                </div>
+            </div>
+
+            <div class="ss-form-group">
+                <label for="addressLine">Address</label>
+                <input type="text" id="addressLine" placeholder="House number, street and area" required />
+            </div>
+
+            <div class="ss-address-form-row">
+                <div class="ss-form-group">
+                    <label for="addressCity">City</label>
+                    <input type="text" id="addressCity" placeholder="Enter city" required />
+                </div>
+
+                <div class="ss-form-group">
+                    <label for="addressState">State</label>
+                    <input type="text" id="addressState" placeholder="Enter state" required />
+                </div>
+            </div>
+
+            <div class="ss-address-form-row">
+                <div class="ss-form-group">
+                    <label for="addressPincode">Pincode</label>
+                    <input type="text" id="addressPincode" placeholder="Enter pincode" required />
+                </div>
+
+                <div class="ss-form-group">
+                    <label for="addressType">Address Type</label>
+                    <select id="addressType" required>
+                        <option value="Home">Home</option>
+                        <option value="Office">Office</option>
+                        <option value="Family">Family</option>
+                    </select>
+                </div>
+            </div>
+
+            <label class="ss-check">
+                <input type="checkbox" id="addressDefault" />
+                <span>Set as default address</span>
+            </label>
+
+            <div class="ss-address-form-actions">
+                <button type="button" class="ss-address-cancel" id="addressCancel">Cancel</button>
+                <button type="submit" class="ss-address-save" id="addressSave">Save Address</button>
+            </div>
+        </form>
+    </div>
+</div>

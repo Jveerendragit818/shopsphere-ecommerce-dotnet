@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Wishlist";
+
+    var wishlistProducts = new[]
+    {
+        new
+        {
+            Id = 1,
+            Name = "Wireless Headphones",
+            Category = "Electronics",
+            Brand = "AudioCore",
+            Price = 4999,
+            OldPrice = 5999,
+            Rating = 4.7,
+            Reviews = 128,
+            Availability = "In Stock",
+            Image = "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=85"
+        },
+        new
+        {
+            Id = 2,
+            Name = "Smart Watch Pro",
+            Category = "Electronics",
+            Brand = "TimeSync",
+            Price = 7499,
+            OldPrice = 8999,
+            Rating = 4.6,
+            Reviews = 94,
+            Availability = "In Stock",
+            Image = "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85"
+        },
+        new
+        {
+            Id = 3,
+            Name = "Classic Casual Jacket",
+            Category = "Fashion",
+            Brand = "Urban Thread",
+            Price = 3299,
+            OldPrice = 4199,
+            Rating = 4.5,
+            Reviews = 76,
+            Availability = "Low Stock",
+            Image = "https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=700&q=85"
+        },
+        new
+        {
+            Id = 4,
+            Name = "Premium Leather Sneakers",
+            Category = "Shoes",
+            Brand = "Stride",
+            Price = 3899,
+            OldPrice = 4799,
+            Rating = 4.8,
+            Reviews = 112,
+            Availability = "In Stock",
+            Image = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85"
+        }
+    };
+}
+
+<section class="ss-wishlist-page">
+
+    <div class="ss-wishlist-heading">
+        <div>
+            <span class="ss-section-eyebrow">MY ACCOUNT</span>
+            <h1>My Wishlist</h1>
+            <p>Save products you love and come back to them whenever you’re ready.</p>
+        </div>
+
+        <a asp-controller="Product" asp-action="Index" class="ss-wishlist-shop-button">
+            Continue Shopping
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+            </svg>
+        </a>
+    </div>
+
+    <div class="ss-wishlist-summary">
+        <div class="ss-wishlist-summary-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m12 19-1.4-1.2C6 13.8 4 11.9 4 9.5 4 7.3 5.8 5.5 8 5.5c1.3 0 2.6.6 3.4 1.7C12.2 6.1 13.5 5.5 15 5.5c2.2 0 4 1.8 4 4 0 2.4-2 4.3-6.6 8.3z"></path>
+            </svg>
+        </div>
+
+        <div>
+            <strong id="wishlistCount">@wishlistProducts.Length items saved</strong>
+            <span>Your saved products are available here for quick access.</span>
+        </div>
+    </div>
+
+    <div class="ss-wishlist-grid" id="wishlistGrid"></div>
+
+    <div class="ss-wishlist-empty" id="wishlistEmpty">
+        <div class="ss-wishlist-empty-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m12 19-1.4-1.2C6 13.8 4 11.9 4 9.5 4 7.3 5.8 5.5 8 5.5c1.3 0 2.6.6 3.4 1.7C12.2 6.1 13.5 5.5 15 5.5c2.2 0 4 1.8 4 4 0 2.4-2 4.3-6.6 8.3z"></path>
+            </svg>
+        </div>
+
+        <h2>Your wishlist is empty</h2>
+        <p>Save products while browsing and they will appear here.</p>
+
+        <a asp-controller="Product" asp-action="Index" class="ss-wishlist-empty-button">
+            Explore Products
+        </a>
+    </div>
+
+</section>
+
+<script>
+    const wishlistProducts = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(wishlistProducts));
+</script>

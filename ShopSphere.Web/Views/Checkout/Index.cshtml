@@ -1,0 +1,241 @@
+﻿@model IEnumerable<ShopSphere.Web.Models.ProductViewModel>
+@using System.Text.Json
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Checkout";
+    var checkoutProductsJson = JsonSerializer.Serialize(Model);
+}
+
+<div class="ss-checkout-page">
+    <div class="ss-checkout-header">
+        <div>
+            <span class="ss-section-eyebrow">Secure checkout</span>
+            <h1>Complete your order</h1>
+            <p>Review your details, select a payment method, and place your order.</p>
+        </div>
+        <a href="/Cart" class="ss-outline-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 12H5"></path>
+                <path d="m11 18-6-6 6-6"></path>
+            </svg>
+            Back to Cart
+        </a>
+    </div>
+
+    <div class="ss-checkout-layout">
+        <div class="ss-checkout-main">
+            <section class="ss-checkout-card">
+                <div class="ss-checkout-card-head">
+                    <div>
+                        <span class="ss-checkout-step">01</span>
+                        <h2>Customer information</h2>
+                    </div>
+                    <span class="ss-checkout-complete">Ready</span>
+                </div>
+
+                <div class="ss-checkout-form-grid">
+                    <div class="ss-field">
+                        <label for="checkoutName">Full Name</label>
+                        <input type="text" id="checkoutName" value="Veerendra Kadiyala" />
+                    </div>
+
+                    <div class="ss-field">
+                        <label for="checkoutEmail">Email Address</label>
+                        <input type="email" id="checkoutEmail" value="veerendra@example.com" />
+                    </div>
+
+                    <div class="ss-field">
+                        <label for="checkoutPhone">Phone Number</label>
+                        <input type="tel" id="checkoutPhone" value="+91 98765 43210" />
+                    </div>
+                </div>
+            </section>
+
+            <section class="ss-checkout-card">
+                <div class="ss-checkout-card-head">
+                    <div>
+                        <span class="ss-checkout-step">02</span>
+                        <h2>Shipping address</h2>
+                    </div>
+                    <span class="ss-checkout-complete">Selected</span>
+                </div>
+
+                <div class="ss-address-choice-group">
+                    <label class="ss-address-choice is-selected">
+                        <input type="radio" name="checkoutAddress" value="home" checked />
+                        <span class="ss-address-choice-radio"></span>
+                        <span class="ss-address-choice-content">
+                            <strong>Home Address</strong>
+                            <span>Veerendra Kadiyala</span>
+                            <span>21 Lake View Road, Rajkot, Gujarat 360001</span>
+                            <span>+91 98765 43210</span>
+                        </span>
+                        <span class="ss-address-choice-badge">Default</span>
+                    </label>
+
+                    <label class="ss-address-choice">
+                        <input type="radio" name="checkoutAddress" value="office" />
+                        <span class="ss-address-choice-radio"></span>
+                        <span class="ss-address-choice-content">
+                            <strong>Office Address</strong>
+                            <span>Veerendra Kadiyala</span>
+                            <span>12 Business Park, Ahmedabad, Gujarat 380015</span>
+                            <span>+91 98765 43210</span>
+                        </span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="ss-checkout-card">
+                <div class="ss-checkout-card-head">
+                    <div>
+                        <span class="ss-checkout-step">03</span>
+                        <h2>Payment method</h2>
+                    </div>
+                    <span class="ss-checkout-complete">Demo only</span>
+                </div>
+
+                <div class="ss-payment-options">
+                    <label class="ss-payment-option is-selected">
+                        <input type="radio" name="paymentMethod" value="cod" checked />
+                        <span class="ss-payment-radio"></span>
+                        <span class="ss-payment-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 7h18v10H3z"></path>
+                                <path d="M7 11h10"></path>
+                                <path d="M7 15h5"></path>
+                            </svg>
+                        </span>
+                        <span class="ss-payment-content">
+                            <strong>Cash on Delivery</strong>
+                            <span>Pay when your order arrives.</span>
+                        </span>
+                    </label>
+
+                    <label class="ss-payment-option">
+                        <input type="radio" name="paymentMethod" value="demo" />
+                        <span class="ss-payment-radio"></span>
+                        <span class="ss-payment-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                                <path d="M3 10h18"></path>
+                            </svg>
+                        </span>
+                        <span class="ss-payment-content">
+                            <strong>Demo Payment</strong>
+                            <span>Frontend-only payment simulation.</span>
+                        </span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="ss-checkout-card ss-checkout-confirmation-card">
+                <div class="ss-checkout-card-head">
+                    <div>
+                        <span class="ss-checkout-step">04</span>
+                        <h2>Final confirmation</h2>
+                    </div>
+                </div>
+
+                <div class="ss-confirmation-note">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 10v6"></path>
+                        <path d="M12 7h.01"></path>
+                    </svg>
+                    <div>
+                        <strong>Demo checkout</strong>
+                        <p>This order is a frontend demonstration. No real payment will be processed.</p>
+                    </div>
+                </div>
+
+                <button type="button" class="ss-primary-btn ss-place-order-btn" id="placeOrderButton">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m5 12 4 4L19 6"></path>
+                    </svg>
+                    Place Order
+                </button>
+            </section>
+
+            <section class="ss-checkout-success" id="checkoutSuccess">
+                <div class="ss-success-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="m8 12 3 3 5-6"></path>
+                    </svg>
+                </div>
+                <span class="ss-section-eyebrow">Order confirmed</span>
+                <h2>Your order has been placed</h2>
+                <p id="checkoutSuccessText">Your demo order has been created successfully.</p>
+                <div class="ss-success-actions">
+                    <a href="/Account/Orders" class="ss-primary-btn">View Orders</a>
+                    <a href="/Shop" class="ss-outline-btn">Continue Shopping</a>
+                </div>
+            </section>
+        </div>
+
+        <aside class="ss-checkout-summary">
+            <div class="ss-checkout-summary-card">
+                <div class="ss-summary-heading">
+                    <div>
+                        <span class="ss-section-eyebrow">Your order</span>
+                        <h2>Order summary</h2>
+                    </div>
+                    <span id="checkoutSummaryCount">0 items</span>
+                </div>
+
+                <div class="ss-checkout-products" id="checkoutProducts"></div>
+
+                <div class="ss-checkout-summary-lines">
+                    <div>
+                        <span>Subtotal</span>
+                        <strong id="checkoutSubtotal">₹0</strong>
+                    </div>
+                    <div>
+                        <span>Delivery</span>
+                        <strong id="checkoutDelivery">Free</strong>
+                    </div>
+                </div>
+
+                <div class="ss-checkout-total-row">
+                    <span>Total</span>
+                    <strong id="checkoutTotal">₹0</strong>
+                </div>
+
+                <div class="ss-checkout-trust">
+                    <div class="ss-checkout-trust-row">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3 5 6v5c0 4.5 2.8 8.1 7 10 4.2-1.9 7-5.5 7-10V6z"></path>
+                            <path d="m9 12 2 2 4-4"></path>
+                        </svg>
+                        <span>Secure checkout experience</span>
+                    </div>
+
+                    <div class="ss-checkout-trust-row">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 7h16v12H4z"></path>
+                            <path d="M8 7V5h8v2"></path>
+                            <path d="M8 12h8"></path>
+                        </svg>
+                        <span>Multiple payment options</span>
+                    </div>
+
+                    <div class="ss-checkout-trust-row">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6 9h12"></path>
+                            <path d="M8 6h8"></path>
+                            <path d="M5 9v10h14V9"></path>
+                            <path d="M9 13h6"></path>
+                        </svg>
+                        <span>Order confirmation included</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<script>
+    const checkoutProducts = @Html.Raw(checkoutProductsJson);
+</script>

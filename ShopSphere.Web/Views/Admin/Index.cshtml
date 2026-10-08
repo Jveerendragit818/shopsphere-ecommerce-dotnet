@@ -1,0 +1,301 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<section class="ss-admin-dashboard">
+    <div class="ss-admin-dashboard-header">
+        <div>
+            <span class="ss-section-eyebrow">ShopSphere Admin</span>
+            <h1>Dashboard</h1>
+            <p>Monitor store performance, orders, customers and inventory.</p>
+        </div>
+        <div class="ss-admin-dashboard-actions">
+            <span class="ss-admin-date-badge" id="adminDashboardDate">Today</span>
+            <button type="button" class="ss-btn ss-btn-primary" id="adminExportButton">Export Report</button>
+        </div>
+    </div>
+
+    <div class="ss-admin-stat-grid">
+        <div class="ss-admin-stat-card">
+            <div class="ss-admin-stat-top">
+                <span>Total Customers</span>
+                <span class="ss-admin-stat-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="9" cy="8" r="3"></circle>
+                        <circle cx="17" cy="9" r="2.5"></circle>
+                        <path d="M3.5 20c.7-4 2.7-6 5.5-6s4.8 2 5.5 6"></path>
+                        <path d="M14 15c2.7-.1 4.7 1.5 5.5 5"></path>
+                    </svg>
+                </span>
+            </div>
+            <strong>1,248</strong>
+            <small>Active customer accounts</small>
+        </div>
+
+        <div class="ss-admin-stat-card">
+            <div class="ss-admin-stat-top">
+                <span>Total Products</span>
+                <span class="ss-admin-stat-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 7h14l-1 12H6z"></path>
+                        <path d="M9 7a3 3 0 0 1 6 0"></path>
+                    </svg>
+                </span>
+            </div>
+            <strong>186</strong>
+            <small>Products in catalog</small>
+        </div>
+
+        <div class="ss-admin-stat-card">
+            <div class="ss-admin-stat-top">
+                <span>Total Orders</span>
+                <span class="ss-admin-stat-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="4" width="12" height="16" rx="2"></rect>
+                        <path d="M9 8h6M9 12h6M9 16h4"></path>
+                    </svg>
+                </span>
+            </div>
+            <strong>742</strong>
+            <small>Orders processed</small>
+        </div>
+
+        <div class="ss-admin-stat-card">
+            <div class="ss-admin-stat-top">
+                <span>Revenue</span>
+                <span class="ss-admin-stat-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3v18"></path>
+                        <path d="M16 7.5c0-2-1.7-3.5-4-3.5S8 5.2 8 7.1c0 2.1 1.7 3.1 4 3.9s4 1.8 4 3.9c0 2.1-1.7 3.7-4 3.7s-4-1.5-4-3.7"></path>
+                    </svg>
+                </span>
+            </div>
+            <strong>₹25.64L</strong>
+            <small>Current dashboard period</small>
+        </div>
+
+        <div class="ss-admin-stat-card">
+            <div class="ss-admin-stat-top">
+                <span>Pending Orders</span>
+                <span class="ss-admin-stat-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 7v5l3 2"></path>
+                    </svg>
+                </span>
+            </div>
+            <strong>84</strong>
+            <small>Require attention</small>
+        </div>
+
+        <div class="ss-admin-stat-card">
+            <div class="ss-admin-stat-top">
+                <span>Low Stock</span>
+                <span class="ss-admin-stat-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 4 21 19H3z"></path>
+                        <path d="M12 9v5M12 17h.01"></path>
+                    </svg>
+                </span>
+            </div>
+            <strong>18</strong>
+            <small>Products below threshold</small>
+        </div>
+
+        <div class="ss-admin-stat-card">
+            <div class="ss-admin-stat-top">
+                <span>Total Reviews</span>
+                <span class="ss-admin-stat-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m12 4 2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 9.3l5-.7z"></path>
+                    </svg>
+                </span>
+            </div>
+            <strong>326</strong>
+            <small>Customer reviews</small>
+        </div>
+    </div>
+
+    <div class="ss-admin-chart-grid">
+        <div class="ss-admin-panel ss-admin-sales-panel">
+            <div class="ss-admin-panel-header">
+                <div>
+                    <span class="ss-admin-panel-eyebrow">Performance</span>
+                    <h2>Sales Overview</h2>
+                </div>
+                <span class="ss-admin-panel-value">₹25.64L</span>
+            </div>
+            <div class="ss-admin-chart-wrap ss-admin-line-wrap">
+                <canvas id="adminSalesChart"></canvas>
+            </div>
+            <div class="ss-admin-month-labels">
+                <span>Jan</span>
+                <span>Feb</span>
+                <span>Mar</span>
+                <span>Apr</span>
+                <span>May</span>
+                <span>Jun</span>
+                <span>Jul</span>
+                <span>Aug</span>
+                <span>Sep</span>
+                <span>Oct</span>
+                <span>Nov</span>
+                <span>Dec</span>
+            </div>
+        </div>
+
+        <div class="ss-admin-panel">
+            <div class="ss-admin-panel-header">
+                <div>
+                    <span class="ss-admin-panel-eyebrow">Monthly</span>
+                    <h2>Monthly Sales</h2>
+                </div>
+            </div>
+            <div class="ss-admin-chart-wrap ss-admin-bar-wrap" id="adminMonthlySalesChart"></div>
+        </div>
+
+        <div class="ss-admin-panel">
+            <div class="ss-admin-panel-header">
+                <div>
+                    <span class="ss-admin-panel-eyebrow">Orders</span>
+                    <h2>Order Status</h2>
+                </div>
+            </div>
+            <div class="ss-admin-status-chart" id="adminOrderStatusChart"></div>
+        </div>
+
+        <div class="ss-admin-panel">
+            <div class="ss-admin-panel-header">
+                <div>
+                    <span class="ss-admin-panel-eyebrow">Products</span>
+                    <h2>Top Products</h2>
+                </div>
+            </div>
+            <div class="ss-admin-top-products" id="adminTopProducts"></div>
+        </div>
+
+        <div class="ss-admin-panel">
+            <div class="ss-admin-panel-header">
+                <div>
+                    <span class="ss-admin-panel-eyebrow">Categories</span>
+                    <h2>Category Performance</h2>
+                </div>
+            </div>
+            <div class="ss-admin-category-chart" id="adminCategoryChart"></div>
+        </div>
+
+        <div class="ss-admin-panel">
+            <div class="ss-admin-panel-header">
+                <div>
+                    <span class="ss-admin-panel-eyebrow">Inventory</span>
+                    <h2>Inventory Status</h2>
+                </div>
+            </div>
+            <div class="ss-admin-inventory-chart">
+                <div class="ss-admin-donut" id="adminInventoryDonut">
+                    <div>
+                        <strong>186</strong>
+                        <span>Products</span>
+                    </div>
+                </div>
+                <div class="ss-admin-inventory-legend">
+                    <div><span class="ss-admin-legend-dot ss-admin-stock-high"></span><strong>138</strong><span>In Stock</span></div>
+                    <div><span class="ss-admin-legend-dot ss-admin-stock-low"></span><strong>18</strong><span>Low Stock</span></div>
+                    <div><span class="ss-admin-legend-dot ss-admin-stock-out"></span><strong>30</strong><span>Out of Stock</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ss-admin-bottom-grid">
+        <div class="ss-admin-panel">
+            <div class="ss-admin-panel-header">
+                <div>
+                    <span class="ss-admin-panel-eyebrow">Recent Activity</span>
+                    <h2>Latest Orders</h2>
+                </div>
+                <a href="/admin/orders" class="ss-admin-panel-link ss-admin-demo-link">View All</a>
+            </div>
+
+            <div class="ss-admin-orders-table">
+                <div class="ss-admin-order-row ss-admin-order-head">
+                    <span>Order</span>
+                    <span>Customer</span>
+                    <span>Total</span>
+                    <span>Status</span>
+                </div>
+                <div class="ss-admin-order-row">
+                    <span>SS-248531</span>
+                    <span>Rahul Mehta</span>
+                    <strong>₹8,499</strong>
+                    <span class="ss-admin-status-badge ss-admin-status-delivered">Delivered</span>
+                </div>
+                <div class="ss-admin-order-row">
+                    <span>SS-248476</span>
+                    <span>Priya Shah</span>
+                    <strong>₹12,750</strong>
+                    <span class="ss-admin-status-badge ss-admin-status-shipped">Shipped</span>
+                </div>
+                <div class="ss-admin-order-row">
+                    <span>SS-248312</span>
+                    <span>Arjun Patel</span>
+                    <strong>₹6,290</strong>
+                    <span class="ss-admin-status-badge ss-admin-status-confirmed">Confirmed</span>
+                </div>
+                <div class="ss-admin-order-row">
+                    <span>SS-248105</span>
+                    <span>Neha Desai</span>
+                    <strong>₹18,900</strong>
+                    <span class="ss-admin-status-badge ss-admin-status-packed">Packed</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ss-admin-panel ss-admin-alert-panel">
+            <div class="ss-admin-panel-header">
+                <div>
+                    <span class="ss-admin-panel-eyebrow">Attention</span>
+                    <h2>Store Alerts</h2>
+                </div>
+            </div>
+
+            <div class="ss-admin-alert">
+                <span class="ss-admin-alert-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 4 21 19H3z"></path>
+                        <path d="M12 9v5M12 17h.01"></path>
+                    </svg>
+                </span>
+                <div>
+                    <strong>18 products are low on stock</strong>
+                    <p>Review inventory levels before the next order cycle.</p>
+                </div>
+            </div>
+
+            <div class="ss-admin-alert">
+                <span class="ss-admin-alert-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 7v5l3 2"></path>
+                    </svg>
+                </span>
+                <div>
+                    <strong>84 orders are pending</strong>
+                    <p>Several orders are waiting for fulfillment actions.</p>
+                </div>
+            </div>
+
+            <div class="ss-admin-alert">
+                <span class="ss-admin-alert-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m12 4 2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 9.3l5-.7z"></path>
+                    </svg>
+                </span>
+                <div>
+                    <strong>326 customer reviews received</strong>
+                    <p>New reviews are available for moderation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

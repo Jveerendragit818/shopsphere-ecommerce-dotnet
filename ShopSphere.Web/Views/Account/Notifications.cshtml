@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Notifications";
+}
+
+<section class="ss-account-page ss-notifications-page">
+    <div class="ss-account-header">
+        <div>
+            <span class="ss-section-eyebrow">Customer Center</span>
+            <h1>Notifications</h1>
+            <p>Stay updated with your orders, wishlist and account activity.</p>
+        </div>
+        <button type="button" class="ss-btn ss-btn-primary" id="markAllNotifications">Mark All as Read</button>
+    </div>
+
+    <div class="ss-notifications-summary">
+        <div class="ss-notification-stat">
+            <span class="ss-notification-stat-label">Total</span>
+            <strong id="notificationTotal">0</strong>
+        </div>
+        <div class="ss-notification-stat">
+            <span class="ss-notification-stat-label">Unread</span>
+            <strong id="notificationUnread">0</strong>
+        </div>
+        <div class="ss-notification-stat">
+            <span class="ss-notification-stat-label">Read</span>
+            <strong id="notificationRead">0</strong>
+        </div>
+    </div>
+
+    <div class="ss-notifications-toolbar">
+        <div>
+            <h2>Recent Notifications</h2>
+            <p id="notificationStatusText">Your latest account activity appears here.</p>
+        </div>
+        <select id="notificationFilter" class="ss-form-select">
+            <option value="all">All Notifications</option>
+            <option value="unread">Unread</option>
+            <option value="read">Read</option>
+        </select>
+    </div>
+
+    <div class="ss-notifications-list" id="notificationsList"></div>
+
+    <div class="ss-notifications-empty" id="notificationsEmpty" hidden>
+        <div class="ss-notifications-empty-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                <path d="M10 21h4"></path>
+            </svg>
+        </div>
+        <h3>No notifications found</h3>
+        <p>You're all caught up for this filter.</p>
+    </div>
+</section>

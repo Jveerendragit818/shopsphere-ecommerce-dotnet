@@ -1,43 +1,636 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home";
 }
 
-<section class="phase-one">
-    <div class="container">
-        <div class="phase-one-card">
-            <span class="phase-one-badge">PHASE 1</span>
+<section class="ss-home-hero">
+    <div class="ss-home-hero-content">
+        <span class="ss-section-eyebrow">SMART SHOPPING, SIMPLIFIED</span>
+        <h1>Everything you need.<br><em>One smarter store.</em></h1>
+        <p>
+            Discover carefully selected products across electronics, fashion, jewellery,
+            footwear, accessories and home appliances.
+        </p>
 
-            <h1>ShopSphere</h1>
+        <div class="ss-hero-actions">
+            <a
+                asp-controller="Product"
+                asp-action="Index"
+                class="ss-primary-btn">
+                Explore Shop
+            </a>
 
-            <p class="phase-one-subtitle">
-                Smart E-Commerce &amp; Order Management Platform
-            </p>
+            <a
+                asp-controller="Category"
+                asp-action="Index"
+                class="ss-secondary-btn">
+                Browse Categories
+            </a>
+        </div>
 
-            <div class="phase-one-grid">
-                <div class="phase-one-item">
-                    <span>Web Application</span>
-                    <strong>Ready</strong>
-                </div>
-
-                <div class="phase-one-item">
-                    <span>REST API</span>
-                    <strong>Ready</strong>
-                </div>
-
-                <div class="phase-one-item">
-                    <span>Database</span>
-                    <strong>MySQL</strong>
-                </div>
-
-                <div class="phase-one-item">
-                    <span>Data Access</span>
-                    <strong>ADO.NET</strong>
-                </div>
+        <div class="ss-hero-meta">
+            <div>
+                <strong>10K+</strong>
+                <span>Products</span>
             </div>
 
-            <p class="phase-one-message">
-                ShopSphere Phase 1 foundation is running successfully.
-            </p>
+            <div>
+                <strong>25K+</strong>
+                <span>Happy Customers</span>
+            </div>
+
+            <div>
+                <strong>4.8/5</strong>
+                <span>Average Rating</span>
+            </div>
         </div>
+    </div>
+
+    <div class="ss-home-hero-visual">
+        <div class="ss-hero-orbit ss-hero-orbit-one"></div>
+        <div class="ss-hero-orbit ss-hero-orbit-two"></div>
+
+        <div class="ss-hero-product-card">
+            <div class="ss-hero-product-image">
+                <img
+                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+                    alt="Smart watch" />
+            </div>
+
+            <div class="ss-hero-product-info">
+                <div>
+                    <span>Featured pick</span>
+                    <h3>Premium Smart Watch</h3>
+                </div>
+
+                <strong>₹4,999</strong>
+            </div>
+        </div>
+
+        <div class="ss-hero-floating-card ss-hero-floating-card-one">
+            <span class="ss-floating-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m12 3 2.8 5.7L21 9.6l-4.5 4.4 1.1 6.1-5.6-2.9-5.6 2.9 1.1-6.1L3 9.6l6.2-.9z" />
+                </svg>
+            </span>
+
+            <div>
+                <strong>Top Rated</strong>
+                <span>4.9 customer rating</span>
+            </div>
+        </div>
+
+        <div class="ss-hero-floating-card ss-hero-floating-card-two">
+            <span class="ss-floating-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3v18M3 12h18" />
+                    <circle cx="12" cy="12" r="8" />
+                </svg>
+            </span>
+
+            <div>
+                <strong>Fast Delivery</strong>
+                <span>Track every order</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ss-home-section ss-category-section">
+    <div class="ss-section-heading">
+        <div>
+            <span class="ss-section-eyebrow">SHOP BY CATEGORY</span>
+            <h2>Find what fits your world.</h2>
+        </div>
+
+        <a
+            asp-controller="Category"
+            asp-action="Index"
+            class="ss-text-link">
+            View all categories
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="ss-category-grid">
+
+        <a
+            asp-controller="Product"
+            asp-action="Index"
+            asp-route-category="Electronics"
+            class="ss-category-card">
+
+            <div class="ss-category-image">
+                <img
+                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=85"
+                    alt="Electronics" />
+            </div>
+
+            <div class="ss-category-content">
+                <span>01</span>
+                <h3>Electronics</h3>
+                <p>Smart technology for everyday life.</p>
+            </div>
+        </a>
+
+        <a
+            asp-controller="Product"
+            asp-action="Index"
+            asp-route-category="Fashion"
+            class="ss-category-card">
+
+            <div class="ss-category-image">
+                <img
+                    src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=800&q=85"
+                    alt="Fashion" />
+            </div>
+
+            <div class="ss-category-content">
+                <span>02</span>
+                <h3>Fashion</h3>
+                <p>Modern essentials for every style.</p>
+            </div>
+        </a>
+
+        <a
+            asp-controller="Product"
+            asp-action="Index"
+            asp-route-category="Jewellery"
+            class="ss-category-card">
+
+            <div class="ss-category-image">
+                <img
+                    src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=85"
+                    alt="Jewellery" />
+            </div>
+
+            <div class="ss-category-content">
+                <span>03</span>
+                <h3>Jewellery</h3>
+                <p>Elegant pieces for every occasion.</p>
+            </div>
+        </a>
+
+        <a
+            asp-controller="Product"
+            asp-action="Index"
+            asp-route-category="Shoes"
+            class="ss-category-card">
+
+            <div class="ss-category-image">
+                <img
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85"
+                    alt="Shoes" />
+            </div>
+
+            <div class="ss-category-content">
+                <span>04</span>
+                <h3>Shoes</h3>
+                <p>Comfort and performance in every step.</p>
+            </div>
+        </a>
+
+        <a
+            asp-controller="Product"
+            asp-action="Index"
+            asp-route-category="Accessories"
+            class="ss-category-card">
+
+            <div class="ss-category-image">
+                <img
+                    src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85"
+                    alt="Accessories" />
+            </div>
+
+            <div class="ss-category-content">
+                <span>05</span>
+                <h3>Accessories</h3>
+                <p>Details that complete your look.</p>
+            </div>
+        </a>
+
+        <a
+            asp-controller="Product"
+            asp-action="Index"
+            asp-route-category="Home Appliances"
+            class="ss-category-card">
+
+            <div class="ss-category-image">
+                <img
+                    src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=800&q=85"
+                    alt="Home appliances" />
+            </div>
+
+            <div class="ss-category-content">
+                <span>06</span>
+                <h3>Home Appliances</h3>
+                <p>Useful technology for better living.</p>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<section class="ss-home-section ss-products-section">
+    <div class="ss-section-heading">
+        <div>
+            <span class="ss-section-eyebrow">FEATURED PRODUCTS</span>
+            <h2>Popular right now.</h2>
+        </div>
+
+        <a
+            asp-controller="Product"
+            asp-action="Index"
+            class="ss-text-link">
+            Explore products
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="ss-home-product-grid">
+
+        <article class="ss-product-card">
+            <div class="ss-product-image-wrap">
+                <span class="ss-product-tag">Best Seller</span>
+
+                <button
+                    type="button"
+                    class="ss-wishlist-btn"
+                    aria-label="Add to wishlist">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m12 19-1.4-1.2C6 13.8 4 11.9 4 9.5 4 7.3 5.8 5.5 8 5.5c1.3 0 2.6.6 3.4 1.7C12.2 6.1 13.5 5.5 15 5.5c2.2 0 4 1.8 4 4 0 2.4-2 4.3-6.6 8.3z" />
+                    </svg>
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+                    alt="Premium smart watch" />
+            </div>
+
+            <div class="ss-product-info">
+                <span class="ss-product-category">Electronics</span>
+
+                <h3>Premium Smart Watch</h3>
+
+                <div class="ss-product-rating">
+                    <span>★★★★★</span>
+                    <small>4.9 (128)</small>
+                </div>
+
+                <div class="ss-product-bottom">
+                    <strong>₹4,999</strong>
+                    <span class="ss-product-old-price">₹6,499</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="ss-product-btn ss-add-home-cart">
+                    Add to Cart
+                </button>
+            </div>
+        </article>
+
+        <article class="ss-product-card">
+            <div class="ss-product-image-wrap">
+                <span class="ss-product-tag ss-product-tag-soft">New</span>
+
+                <button
+                    type="button"
+                    class="ss-wishlist-btn"
+                    aria-label="Add to wishlist">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m12 19-1.4-1.2C6 13.8 4 11.9 4 9.5 4 7.3 5.8 5.5 8 5.5c1.3 0 2.6.6 3.4 1.7C12.2 6.1 13.5 5.5 15 5.5c2.2 0 4 1.8 4 4 0 2.4-2 4.3-6.6 8.3z" />
+                    </svg>
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+                    alt="Wireless headphones" />
+            </div>
+
+            <div class="ss-product-info">
+                <span class="ss-product-category">Electronics</span>
+
+                <h3>Wireless Headphones</h3>
+
+                <div class="ss-product-rating">
+                    <span>★★★★★</span>
+                    <small>4.8 (96)</small>
+                </div>
+
+                <div class="ss-product-bottom">
+                    <strong>₹3,499</strong>
+                    <span class="ss-product-old-price">₹4,299</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="ss-product-btn ss-add-home-cart">
+                    Add to Cart
+                </button>
+            </div>
+        </article>
+
+        <article class="ss-product-card">
+            <div class="ss-product-image-wrap">
+
+                <button
+                    type="button"
+                    class="ss-wishlist-btn"
+                    aria-label="Add to wishlist">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m12 19-1.4-1.2C6 13.8 4 11.9 4 9.5 4 7.3 5.8 5.5 8 5.5c1.3 0 2.6.6 3.4 1.7C12.2 6.1 13.5 5.5 15 5.5c2.2 0 4 1.8 4 4 0 2.4-2 4.3-6.6 8.3z" />
+                    </svg>
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85"
+                    alt="Running shoes" />
+            </div>
+
+            <div class="ss-product-info">
+                <span class="ss-product-category">Shoes</span>
+
+                <h3>Urban Running Shoes</h3>
+
+                <div class="ss-product-rating">
+                    <span>★★★★★</span>
+                    <small>4.7 (83)</small>
+                </div>
+
+                <div class="ss-product-bottom">
+                    <strong>₹2,799</strong>
+                    <span class="ss-product-old-price">₹3,499</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="ss-product-btn ss-add-home-cart">
+                    Add to Cart
+                </button>
+            </div>
+        </article>
+
+        <article class="ss-product-card">
+            <div class="ss-product-image-wrap">
+                <span class="ss-product-tag">Trending</span>
+
+                <button
+                    type="button"
+                    class="ss-wishlist-btn"
+                    aria-label="Add to wishlist">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m12 19-1.4-1.2C6 13.8 4 11.9 4 9.5 4 7.3 5.8 5.5 8 5.5c1.3 0 2.6.6 3.4 1.7C12.2 6.1 13.5 5.5 15 5.5c2.2 0 4 1.8 4 4 0 2.4-2 4.3-6.6 8.3z" />
+                    </svg>
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=85"
+                    alt="Minimal jewellery" />
+            </div>
+
+            <div class="ss-product-info">
+                <span class="ss-product-category">Jewellery</span>
+
+                <h3>Minimal Gold Necklace</h3>
+
+                <div class="ss-product-rating">
+                    <span>★★★★★</span>
+                    <small>4.9 (61)</small>
+                </div>
+
+                <div class="ss-product-bottom">
+                    <strong>₹7,499</strong>
+                    <span class="ss-product-old-price">₹8,999</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="ss-product-btn ss-add-home-cart">
+                    Add to Cart
+                </button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section class="ss-home-promo">
+
+    <div class="ss-home-promo-content">
+        <span class="ss-section-eyebrow">SMARTER EVERYDAY LIVING</span>
+
+        <h2>
+            Upgrade the things<br />
+            <em>you use every day.</em>
+        </h2>
+
+        <p>
+            From work essentials to lifestyle upgrades, discover products selected
+            to make everyday shopping easier.
+        </p>
+
+        <a
+            asp-controller="Product"
+            asp-action="Index"
+            class="ss-primary-btn">
+            Discover More
+        </a>
+    </div>
+
+    <div class="ss-home-promo-visual">
+
+        <div class="ss-promo-image-card">
+            <img
+                src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=85"
+                alt="Modern workspace" />
+        </div>
+
+        <div class="ss-promo-stat">
+            <strong>24/7</strong>
+            <span>Easy online shopping</span>
+        </div>
+
+    </div>
+</section>
+
+<section class="ss-home-section ss-benefits-section">
+
+    <div class="ss-section-heading ss-centered-heading">
+        <div>
+            <span class="ss-section-eyebrow">WHY SHOPSPHERE</span>
+            <h2>Designed around you.</h2>
+        </div>
+    </div>
+
+    <div class="ss-benefits-grid">
+
+        <article class="ss-benefit-card">
+            <div class="ss-benefit-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16v13H4z" />
+                    <path d="M8 7a4 4 0 0 1 8 0M7 12h10M7 16h6" />
+                </svg>
+            </div>
+
+            <h3>Curated Products</h3>
+
+            <p>
+                Explore a balanced selection across everyday retail categories.
+            </p>
+        </article>
+
+        <article class="ss-benefit-card">
+            <div class="ss-benefit-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z" />
+                    <circle cx="7" cy="18" r="2" />
+                    <circle cx="18" cy="18" r="2" />
+                </svg>
+            </div>
+
+            <h3>Track Every Order</h3>
+
+            <p>
+                Keep your purchases organized from confirmation to delivery.
+            </p>
+        </article>
+
+        <article class="ss-benefit-card">
+            <div class="ss-benefit-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3 4 6v5c0 5 3.3 8.2 8 10 4.7-1.8 8-5 8-10V6z" />
+                    <path d="m8.5 12 2.2 2.2 4.8-5" />
+                </svg>
+            </div>
+
+            <h3>Secure Experience</h3>
+
+            <p>
+                Built with a clean account experience and security-focused design.
+            </p>
+        </article>
+
+        <article class="ss-benefit-card">
+            <div class="ss-benefit-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8" />
+                    <circle cx="12" cy="12" r="3.5" />
+                </svg>
+            </div>
+
+            <h3>Easy Shopping</h3>
+
+            <p>
+                Search, discover, save and manage your purchases in one place.
+            </p>
+        </article>
+
+    </div>
+</section>
+
+<section class="ss-home-section ss-reviews-section">
+
+    <div class="ss-section-heading">
+        <div>
+            <span class="ss-section-eyebrow">CUSTOMER REVIEWS</span>
+            <h2>Loved by everyday shoppers.</h2>
+        </div>
+    </div>
+
+    <div class="ss-review-grid">
+
+        <article class="ss-review-card">
+            <div class="ss-review-stars">★★★★★</div>
+
+            <p>
+                “The whole shopping experience feels clean and simple. I can find
+                what I need quickly without getting lost.”
+            </p>
+
+            <div class="ss-review-user">
+                <span>AS</span>
+
+                <div>
+                    <strong>Ananya Shah</strong>
+                    <small>Verified Customer</small>
+                </div>
+            </div>
+        </article>
+
+        <article class="ss-review-card">
+            <div class="ss-review-stars">★★★★★</div>
+
+            <p>
+                “The product presentation is excellent and the order tracking makes
+                it easy to know what is happening with my purchase.”
+            </p>
+
+            <div class="ss-review-user">
+                <span>RK</span>
+
+                <div>
+                    <strong>Rohan Kapoor</strong>
+                    <small>Verified Customer</small>
+                </div>
+            </div>
+        </article>
+
+        <article class="ss-review-card">
+            <div class="ss-review-stars">★★★★★</div>
+
+            <p>
+                “I like how everything is organized. Wishlist, cart and account
+                information all feel connected.”
+            </p>
+
+            <div class="ss-review-user">
+                <span>PM</span>
+
+                <div>
+                    <strong>Priya Mehta</strong>
+                    <small>Verified Customer</small>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section class="ss-home-newsletter">
+
+    <div>
+        <span class="ss-section-eyebrow">STAY IN THE LOOP</span>
+
+        <h2>New products. Better discoveries.</h2>
+
+        <p>
+            Get the latest ShopSphere updates delivered to your inbox.
+        </p>
+    </div>
+
+    <div class="ss-home-newsletter-form">   
+
+        <input
+            type="email"
+            id="homeNewsletterEmail"
+            placeholder="Enter your email address" />
+
+        <button
+            type="button"
+            id="homeNewsletterButton">
+            Subscribe
+        </button>
+
     </div>
 </section>

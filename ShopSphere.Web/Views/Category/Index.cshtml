@@ -1,0 +1,186 @@
+﻿@model List<ShopSphere.Web.Models.CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Categories";
+    var featuredCategories = Model.Where(x => x.Featured).ToList();
+}
+
+<section class="ss-category-page">
+
+    <section class="ss-category-hero">
+
+        <div class="ss-category-hero-content">
+            <span class="ss-section-eyebrow">EXPLORE SHOPSPHERE</span>
+
+            <h1>
+                Shop by what
+                <em>interests you.</em>
+            </h1>
+
+            <p>
+                Explore carefully organized categories designed to make finding
+                products faster, easier and more enjoyable.
+            </p>
+        </div>
+
+        <div class="ss-category-hero-stats">
+            <div>
+                <strong>@Model.Count</strong>
+                <span>Categories</span>
+            </div>
+
+            <div>
+                <strong>@Model.Sum(x => x.ProductCount)</strong>
+                <span>Products</span>
+            </div>
+
+            <div>
+                <strong>6</strong>
+                <span>Retail Areas</span>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="ss-category-featured">
+
+        <div class="ss-section-heading">
+            <div>
+                <span class="ss-section-eyebrow">FEATURED CATEGORIES</span>
+                <h2>Start with something you love.</h2>
+            </div>
+        </div>
+
+        <div class="ss-featured-category-grid">
+
+            @foreach (var category in featuredCategories)
+            {
+                <article class="ss-featured-category-card">
+
+                    <div class="ss-featured-category-image">
+                        <img src="@category.Image"
+                             alt="@category.Name"
+                             loading="lazy" />
+                    </div>
+
+                    <div class="ss-featured-category-overlay"></div>
+
+                    <div class="ss-featured-category-content">
+
+                        <div>
+                            <span>@category.ProductCount products</span>
+                            <h3>@category.Name</h3>
+                        </div>
+
+                        <a asp-controller="Product"
+                           asp-action="Index"
+                           asp-route-category="@category.Name"
+                           class="ss-category-browse-link"
+                           data-category="@category.Name">
+                            Browse
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+                        </a>
+
+                    </div>
+
+                </article>
+            }
+
+        </div>
+
+    </section>
+
+    <section class="ss-category-all">
+
+        <div class="ss-section-heading">
+            <div>
+                <span class="ss-section-eyebrow">ALL CATEGORIES</span>
+                <h2>Everything in one place.</h2>
+            </div>
+        </div>
+
+        <div class="ss-all-category-grid">
+
+            @foreach (var category in Model)
+            {
+                <article class="ss-all-category-card">
+
+                    <div class="ss-all-category-image">
+                        <img src="@category.Image"
+                             alt="@category.Name"
+                             loading="lazy" />
+                    </div>
+
+                    <div class="ss-all-category-content">
+
+                        <div class="ss-category-number">
+                            @category.Id.ToString("D2")
+                        </div>
+
+                        <div class="ss-category-main-info">
+                            <span>@category.ProductCount products</span>
+                            <h3>@category.Name</h3>
+                            <p>@category.Description</p>
+                        </div>
+
+                        <a asp-controller="Product"
+                           asp-action="Index"
+                           asp-route-category="@category.Name"
+                           class="ss-category-arrow"
+                           data-category="@category.Name"
+                           aria-label="Browse @category.Name">
+
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+
+                        </a>
+
+                    </div>
+
+                </article>
+            }
+
+        </div>
+
+    </section>
+
+    <section class="ss-category-discovery">
+
+        <div class="ss-category-discovery-content">
+
+            <span class="ss-section-eyebrow">DISCOVER MORE</span>
+
+            <h2>
+                Not sure where
+                <em>to begin?</em>
+            </h2>
+
+            <p>
+                Explore our complete product collection and use filters,
+                ratings and sorting to find exactly what you need.
+            </p>
+
+            <a asp-controller="Product"
+               asp-action="Index"
+               class="ss-primary-btn">
+                Explore All Products
+            </a>
+
+        </div>
+
+        <div class="ss-category-discovery-visual">
+
+            <div class="ss-discovery-card">
+                <span>SHOPSPHERE</span>
+                <strong>DISCOVER</strong>
+                <small>Something worth bringing home.</small>
+            </div>
+
+        </div>
+
+    </section>
+
+</section>

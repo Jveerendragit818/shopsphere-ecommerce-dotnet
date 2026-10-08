@@ -1,0 +1,402 @@
+﻿@model ShopSphere.Web.Models.ProductDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Product.Name;
+}
+
+<section class="ss-product-details-page">
+
+    <div class="ss-product-breadcrumb">
+        <a asp-controller="Home" asp-action="Index">Home</a>
+        <span>/</span>
+        <a asp-controller="Product" asp-action="Index">Shop</a>
+        <span>/</span>
+        <span>@Model.Product.Name</span>
+    </div>
+
+    <div class="ss-product-details-main">
+
+        <div class="ss-product-gallery">
+
+            <div class="ss-product-thumbnails">
+
+                <button type="button" class="ss-product-thumb is-active">
+                    <img src="@Model.Product.Image" alt="@Model.Product.Name" />
+                </button>
+
+                <button type="button" class="ss-product-thumb">
+                    <img src="@Model.Product.Image" alt="@Model.Product.Name" />
+                </button>
+
+                <button type="button" class="ss-product-thumb">
+                    <img src="@Model.Product.Image" alt="@Model.Product.Name" />
+                </button>
+
+                <button type="button" class="ss-product-thumb">
+                    <img src="@Model.Product.Image" alt="@Model.Product.Name" />
+                </button>
+
+            </div>
+
+            <div class="ss-product-main-image">
+
+                <span class="ss-detail-category">
+                    @Model.Product.Category
+                </span>
+
+                <button type="button" class="ss-detail-wishlist" id="detailWishlist">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m12 19-1.4-1.2C6 13.8 4 11.9 4 9.5 4 7.3 5.8 5.5 8 5.5c1.3 0 2.6.6 3.4 1.7C12.2 6.1 13.5 5.5 15 5.5c2.2 0 4 1.8 4 4 0 2.4-2 4.3-6.6 8.3z" />
+                    </svg>
+                </button>
+
+                <img
+                    id="mainProductImage"
+                    src="@Model.Product.Image"
+                    alt="@Model.Product.Name" />
+
+            </div>
+
+        </div>
+
+        <div class="ss-product-detail-info">
+
+            <span class="ss-detail-eyebrow">
+                @Model.Product.Category
+            </span>
+
+            <h1>@Model.Product.Name</h1>
+
+            <div class="ss-detail-brand">
+                By <strong>@Model.Product.Brand</strong>
+            </div>
+
+            <div class="ss-detail-rating-row">
+                <div class="ss-detail-rating-stars">
+                    ★★★★★
+                </div>
+
+                <strong>@Model.Product.Rating</strong>
+
+                <span>
+                    @Model.Product.ReviewCount reviews
+                </span>
+            </div>
+
+            <div class="ss-detail-price-row">
+                <strong>
+                    ₹@Model.Product.Price.ToString("N0")
+                </strong>
+
+                @if (Model.Product.OldPrice.HasValue)
+                {
+                    <del>
+                        ₹@Model.Product.OldPrice.Value.ToString("N0")
+                    </del>
+                }
+
+                @if (Model.Product.OldPrice.HasValue)
+                {
+                    var discount = Math.Round(
+                        ((Model.Product.OldPrice.Value - Model.Product.Price) / Model.Product.OldPrice.Value) * 100
+                    );
+
+                    <span class="ss-detail-discount">
+                        @discount% OFF
+                    </span>
+                }
+            </div>
+
+            <div class="ss-detail-availability">
+                <span class="ss-detail-status-dot"></span>
+                <strong>@Model.Product.Availability</strong>
+            </div>
+
+            <p class="ss-detail-description">
+                @Model.Product.Description
+            </p>
+
+            <div class="ss-detail-divider"></div>
+
+            <div class="ss-quantity-area">
+                <span>Quantity</span>
+
+                <div class="ss-quantity-control">
+                    <button type="button" id="quantityMinus">−</button>
+                    <input type="number" id="productQuantity" value="1" min="1" max="10" />
+                    <button type="button" id="quantityPlus">+</button>
+                </div>
+            </div>
+
+            <div class="ss-detail-actions">
+
+                <button
+                    type="button"
+                    class="ss-detail-cart-btn"
+                    id="detailAddCart"
+                    @(Model.Product.Availability == "Out of Stock" ? "disabled" : "")>
+                    @(Model.Product.Availability == "Out of Stock" ? "Out of Stock" : "Add to Cart")
+                </button>
+
+                <button
+                    type="button"
+                    class="ss-detail-buy-btn"
+                    id="detailBuyNow"
+                    @(Model.Product.Availability == "Out of Stock" ? "disabled" : "")>
+                    Buy Now
+                </button>
+
+            </div>
+
+            <div class="ss-detail-benefits">
+
+                <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z" />
+                        <circle cx="7" cy="18" r="2" />
+                        <circle cx="18" cy="18" r="2" />
+                    </svg>
+                    <span>Reliable delivery</span>
+                </div>
+
+                <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3 4 6v5c0 5 3.3 8.2 8 10 4.7-1.8 8-5 8-10V6z" />
+                        <path d="m8.5 12 2.2 2.2 4.8-5" />
+                    </svg>
+                    <span>Secure shopping</span>
+                </div>
+
+                <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12a7 7 0 0 1 12.2-4.7L19 9" />
+                        <path d="M19 5v4h-4" />
+                        <path d="M19 12a7 7 0 0 1-12.2 4.7L5 15" />
+                        <path d="M5 19v-4h4" />
+                    </svg>
+                    <span>Easy returns</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <section class="ss-product-information">
+
+        <div class="ss-detail-tabs">
+
+            <button type="button" class="ss-detail-tab is-active" data-tab="description">
+                Description
+            </button>
+
+            <button type="button" class="ss-detail-tab" data-tab="specifications">
+                Specifications
+            </button>
+
+            <button type="button" class="ss-detail-tab" data-tab="additional">
+                Additional Details
+            </button>
+
+            <button type="button" class="ss-detail-tab" data-tab="reviews">
+                Reviews
+            </button>
+
+        </div>
+
+        <div class="ss-detail-tab-content is-active" data-content="description">
+            <h2>About this product</h2>
+
+            <p>
+                @Model.Product.Description
+            </p>
+
+            <p>
+                Shop confidently with a product experience designed around clear
+                information, simple purchasing and easy order management.
+            </p>
+        </div>
+
+        <div class="ss-detail-tab-content" data-content="specifications">
+
+            <div class="ss-specification-grid">
+
+                <div>
+                    <span>Product</span>
+                    <strong>@Model.Product.Name</strong>
+                </div>
+
+                <div>
+                    <span>Brand</span>
+                    <strong>@Model.Product.Brand</strong>
+                </div>
+
+                <div>
+                    <span>Category</span>
+                    <strong>@Model.Product.Category</strong>
+                </div>
+
+                <div>
+                    <span>Rating</span>
+                    <strong>@Model.Product.Rating / 5</strong>
+                </div>
+
+                <div>
+                    <span>Availability</span>
+                    <strong>@Model.Product.Availability</strong>
+                </div>
+
+                <div>
+                    <span>Product ID</span>
+                    <strong>SS-@Model.Product.Id.ToString("D4")</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ss-detail-tab-content" data-content="additional">
+
+            <div class="ss-detail-list">
+
+                <div>
+                    <span>Shipping</span>
+                    <strong>Available for delivery</strong>
+                </div>
+
+                <div>
+                    <span>Payment</span>
+                    <strong>Cash on Delivery / Demo Payment</strong>
+                </div>
+
+                <div>
+                    <span>Customer Support</span>
+                    <strong>ShopSphere Support Center</strong>
+                </div>
+
+                <div>
+                    <span>Product Type</span>
+                    <strong>General Retail</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ss-detail-tab-content" data-content="reviews">
+
+            <div class="ss-reviews-summary">
+
+                <div class="ss-review-score">
+                    <strong>@Model.Product.Rating</strong>
+                    <span>out of 5</span>
+                </div>
+
+                <div>
+                    <div class="ss-detail-rating-stars">★★★★★</div>
+                    <p>
+                        Based on @Model.Product.ReviewCount customer reviews
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="ss-detail-review-list">
+
+                <article class="ss-detail-review">
+                    <div class="ss-detail-review-head">
+                        <div>
+                            <strong>Ananya Shah</strong>
+                            <span>Verified Customer</span>
+                        </div>
+                        <span>★★★★★</span>
+                    </div>
+                    <p>
+                        Excellent product quality and a smooth shopping experience.
+                    </p>
+                    <small>12 September 2026</small>
+                </article>
+
+                <article class="ss-detail-review">
+                    <div class="ss-detail-review-head">
+                        <div>
+                            <strong>Rohan Kapoor</strong>
+                            <span>Verified Customer</span>
+                        </div>
+                        <span>★★★★★</span>
+                    </div>
+                    <p>
+                        The product matched the description and arrived in good condition.
+                    </p>
+                    <small>7 September 2026</small>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="ss-related-products">
+
+        <div class="ss-section-heading">
+            <div>
+                <span class="ss-section-eyebrow">YOU MAY ALSO LIKE</span>
+                <h2>More from the collection.</h2>
+            </div>
+
+            <a asp-controller="Product" asp-action="Index" class="ss-text-link">
+                View all products
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="ss-related-grid">
+
+            @foreach (var product in Model.RelatedProducts)
+            {
+                <article class="ss-related-card">
+
+                    <a
+                        asp-controller="Product"
+                        asp-action="Details"
+                        asp-route-id="@product.Id"
+                        class="ss-related-image">
+                        <img src="@product.Image" alt="@product.Name" />
+                    </a>
+
+                    <div class="ss-related-info">
+
+                        <span>@product.Category</span>
+
+                        <h3>
+                            <a
+                                asp-controller="Product"
+                                asp-action="Details"
+                                asp-route-id="@product.Id">
+                                @product.Name
+                            </a>
+                        </h3>
+
+                        <div class="ss-related-rating">
+                            <span>★★★★★</span>
+                            <small>@product.Rating</small>
+                        </div>
+
+                        <strong>
+                            ₹@product.Price.ToString("N0")
+                        </strong>
+
+                    </div>
+
+                </article>
+            }
+
+        </div>
+
+    </section>
+
+</section>

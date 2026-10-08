@@ -1,0 +1,196 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Order Tracking";
+}
+
+<div class="ss-tracking-page">
+    <div class="ss-tracking-header">
+        <div>
+            <span class="ss-section-eyebrow">Order tracking</span>
+            <h1>Track your order</h1>
+            <p>Follow the progress of your ShopSphere order from confirmation to delivery.</p>
+        </div>
+
+        <div class="ss-tracking-header-actions">
+            <a href="/account/orders" class="ss-outline-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 12H5"></path>
+                    <path d="m11 18-6-6 6-6"></path>
+                </svg>
+                Back to Orders
+            </a>
+
+            <a href="#" id="trackingDetailsButton" class="ss-primary-btn">
+                View Order Details
+            </a>
+        </div>
+    </div>
+
+    <section class="ss-tracking-overview">
+        <div class="ss-tracking-overview-main">
+            <span class="ss-order-detail-label">Order ID</span>
+            <strong id="trackingOrderId">SS-000000</strong>
+        </div>
+
+        <div>
+            <span class="ss-order-detail-label">Placed On</span>
+            <strong id="trackingOrderDate">--</strong>
+        </div>
+
+        <div>
+            <span class="ss-order-detail-label">Payment</span>
+            <strong id="trackingPayment">--</strong>
+        </div>
+
+        <div>
+            <span class="ss-order-detail-label">Order Total</span>
+            <strong id="trackingTotal">₹0</strong>
+        </div>
+    </section>
+
+    <section class="ss-tracking-card" id="trackingCard">
+        <div class="ss-tracking-card-head">
+            <div>
+                <span class="ss-section-eyebrow">Delivery progress</span>
+                <h2 id="trackingHeading">Your order is on its way</h2>
+            </div>
+
+            <span class="ss-order-status confirmed" id="trackingStatus">Confirmed</span>
+        </div>
+
+        <div class="ss-tracking-progress" id="trackingProgress">
+            <div class="ss-tracking-line">
+                <div class="ss-tracking-line-active" id="trackingLineActive"></div>
+            </div>
+
+            <div class="ss-tracking-step" data-status="Confirmed">
+                <div class="ss-tracking-step-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m5 12 4 4L19 6"></path>
+                    </svg>
+                </div>
+                <strong>Confirmed</strong>
+                <span>Order received</span>
+            </div>
+
+            <div class="ss-tracking-step" data-status="Packed">
+                <div class="ss-tracking-step-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 7h16v13H4z"></path>
+                        <path d="M8 7V5h8v2"></path>
+                        <path d="M8 12h8"></path>
+                    </svg>
+                </div>
+                <strong>Packed</strong>
+                <span>Ready to ship</span>
+            </div>
+
+            <div class="ss-tracking-step" data-status="Shipped">
+                <div class="ss-tracking-step-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 6h11v11H3z"></path>
+                        <path d="M14 10h4l3 3v4h-7"></path>
+                        <circle cx="7" cy="19" r="1.5"></circle>
+                        <circle cx="18" cy="19" r="1.5"></circle>
+                    </svg>
+                </div>
+                <strong>Shipped</strong>
+                <span>On the way</span>
+            </div>
+
+            <div class="ss-tracking-step" data-status="Out for Delivery">
+                <div class="ss-tracking-step-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 6h11v11H3z"></path>
+                        <path d="M14 10h4l3 3v4h-7"></path>
+                        <path d="M5 10h5"></path>
+                        <circle cx="7" cy="19" r="1.5"></circle>
+                        <circle cx="18" cy="19" r="1.5"></circle>
+                    </svg>
+                </div>
+                <strong>Out for Delivery</strong>
+                <span>Arriving today</span>
+            </div>
+
+            <div class="ss-tracking-step" data-status="Delivered">
+                <div class="ss-tracking-step-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 7 10 17l-5-5"></path>
+                    </svg>
+                </div>
+                <strong>Delivered</strong>
+                <span>Order completed</span>
+            </div>
+        </div>
+
+        <div class="ss-tracking-message" id="trackingMessage">
+            <div class="ss-tracking-message-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                </svg>
+            </div>
+
+            <div>
+                <strong id="trackingMessageTitle">Order confirmed</strong>
+                <p id="trackingMessageText">Your order has been successfully confirmed.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ss-tracking-exception" id="trackingException">
+        <div class="ss-tracking-exception-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 2.8 19h18.4z"></path>
+                <path d="M12 9v4"></path>
+                <path d="M12 17h.01"></path>
+            </svg>
+        </div>
+
+        <div>
+            <strong id="trackingExceptionTitle">Order issue</strong>
+            <p id="trackingExceptionText">There is an issue with this order.</p>
+        </div>
+    </section>
+
+    <div class="ss-tracking-bottom-grid">
+        <section class="ss-tracking-info-card">
+            <div class="ss-tracking-info-head">
+                <div>
+                    <span class="ss-section-eyebrow">Delivery</span>
+                    <h2>Shipping destination</h2>
+                </div>
+            </div>
+
+            <div class="ss-tracking-address">
+                <div class="ss-tracking-address-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"></path>
+                        <circle cx="12" cy="9" r="2.3"></circle>
+                    </svg>
+                </div>
+
+                <div>
+                    <strong id="trackingCustomerName">Veerendra Kadiyala</strong>
+                    <span id="trackingAddress">21 Lake View Road, Rajkot, Gujarat 360001</span>
+                    <span id="trackingPhone">+91 98765 43210</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="ss-tracking-info-card">
+            <div class="ss-tracking-info-head">
+                <div>
+                    <span class="ss-section-eyebrow">Support</span>
+                    <h2>Need assistance?</h2>
+                </div>
+            </div>
+
+            <p class="ss-tracking-support-text">Order support can be connected here when backend services are added.</p>
+
+            <button type="button" class="ss-order-support-btn" id="trackingSupportButton">
+                Contact Support
+            </button>
+        </section>
+    </div>
+</div>

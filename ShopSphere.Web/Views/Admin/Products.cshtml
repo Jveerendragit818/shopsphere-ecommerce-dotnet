@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Products";
+}
+
+<section class="ss-admin-products-page">
+    <div class="ss-admin-products-header">
+        <div>
+            <span class="ss-section-eyebrow">Store Management</span>
+            <h1>Products</h1>
+            <p>Manage your ShopSphere product catalog and inventory information.</p>
+        </div>
+        <div class="ss-admin-products-actions">
+            <button type="button" class="ss-btn ss-btn-primary" id="adminAddProductButton">Add Product</button>
+        </div>
+    </div>
+
+    <div class="ss-admin-product-summary">
+        <div class="ss-admin-product-summary-card">
+            <span>Total Products</span>
+            <strong id="adminProductTotal">0</strong>
+        </div>
+        <div class="ss-admin-product-summary-card">
+            <span>Active</span>
+            <strong id="adminProductActive">0</strong>
+        </div>
+        <div class="ss-admin-product-summary-card">
+            <span>Low Stock</span>
+            <strong id="adminProductLowStock">0</strong>
+        </div>
+        <div class="ss-admin-product-summary-card">
+            <span>Out of Stock</span>
+            <strong id="adminProductOutStock">0</strong>
+        </div>
+    </div>
+
+    <div class="ss-admin-products-panel">
+        <div class="ss-admin-products-toolbar">
+            <div class="ss-admin-product-search">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5"></circle>
+                    <path d="m16 16 5 5"></path>
+                </svg>
+                <input type="search" id="adminProductSearch" placeholder="Search products, brands or categories..." />
+            </div>
+
+            <div class="ss-admin-product-filters">
+                <select id="adminCategoryFilter" class="ss-admin-filter-select">
+                    <option value="all">All Categories</option>
+                </select>
+
+                <select id="adminStatusFilter" class="ss-admin-filter-select">
+                    <option value="all">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="out">Out of Stock</option>
+                </select>
+
+                <select id="adminSortFilter" class="ss-admin-filter-select">
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="nameAsc">Name A-Z</option>
+                    <option value="nameDesc">Name Z-A</option>
+                    <option value="priceLow">Price Low-High</option>
+                    <option value="priceHigh">Price High-Low</option>
+                    <option value="stockLow">Stock Low-High</option>
+                    <option value="stockHigh">Stock High-Low</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="ss-admin-products-table-wrap">
+            <table class="ss-admin-products-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Rating</th>
+                        <th>Status</th>
+                        <th>Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminProductsTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="ss-admin-products-empty" id="adminProductsEmpty" hidden>
+            <div class="ss-admin-products-empty-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 7h14l-1 12H6z"></path>
+                    <path d="M9 7a3 3 0 0 1 6 0"></path>
+                </svg>
+            </div>
+            <h3>No products found</h3>
+            <p>Try changing your search or filters.</p>
+        </div>
+
+        <div class="ss-admin-products-footer">
+            <span id="adminProductsPageInfo">Showing 0 products</span>
+            <div class="ss-admin-pagination" id="adminProductsPagination"></div>
+        </div>
+    </div>
+</section>

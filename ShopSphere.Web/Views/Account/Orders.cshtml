@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "My Orders";
+}
+
+<div class="ss-orders-page">
+    <div class="ss-orders-header">
+        <div>
+            <span class="ss-section-eyebrow">Account center</span>
+            <h1>My Orders</h1>
+            <p>View your recent purchases, payment details, and order status.</p>
+        </div>
+        <a href="/Product" class="ss-primary-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6h15l-1.5 9h-11z"></path>
+                <path d="M6 6 5 3H2"></path>
+                <circle cx="9" cy="19" r="1.5"></circle>
+                <circle cx="18" cy="19" r="1.5"></circle>
+            </svg>
+            Continue Shopping
+        </a>
+    </div>
+
+    <div class="ss-orders-toolbar">
+        <div class="ss-orders-count" id="ordersCount">0 orders</div>
+
+        <div class="ss-orders-filter">
+            <label for="orderStatusFilter">Status</label>
+            <select id="orderStatusFilter">
+                <option value="all">All Orders</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Packed">Packed</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="Failed">Failed</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="ss-orders-list" id="ordersList"></div>
+
+    <div class="ss-orders-empty" id="ordersEmpty">
+        <div class="ss-orders-empty-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 7h14v14H5z"></path>
+                <path d="M8 7a4 4 0 0 1 8 0"></path>
+            </svg>
+        </div>
+        <span class="ss-section-eyebrow">No orders found</span>
+        <h2>Your order history is empty</h2>
+        <p>Once you place an order, it will appear here.</p>
+        <a href="/Shop" class="ss-primary-btn">Explore Shop</a>
+    </div>
+</div>

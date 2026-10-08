@@ -1,0 +1,159 @@
+﻿@model IEnumerable<ShopSphere.Web.Models.ProductViewModel>
+@using System.Text.Json
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "My Reviews";
+    var reviewProductsJson = JsonSerializer.Serialize(Model);
+}
+
+<div class="ss-reviews-page">
+    <div class="ss-reviews-header">
+        <div>
+            <span class="ss-section-eyebrow">Account center</span>
+            <h1>My Reviews</h1>
+            <p>Share your experience and manage the reviews you have submitted.</p>
+        </div>
+
+        <button type="button" class="ss-primary-btn" id="writeReviewButton">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m12 20 8.5-8.5a2.1 2.1 0 0 0-3-3L9 17l-1 4z"></path>
+                <path d="m14.5 11.5 3 3"></path>
+                <path d="M5 5h5M5 9h4"></path>
+            </svg>
+            Write a Review
+        </button>
+    </div>
+
+    <div class="ss-reviews-stats">
+        <div class="ss-review-stat">
+            <div class="ss-review-stat-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"></path>
+                </svg>
+            </div>
+            <div>
+                <span>Total Reviews</span>
+                <strong id="reviewTotalCount">0</strong>
+            </div>
+        </div>
+
+        <div class="ss-review-stat">
+            <div class="ss-review-stat-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m5 12 4 4L19 6"></path>
+                    <circle cx="12" cy="12" r="9"></circle>
+                </svg>
+            </div>
+            <div>
+                <span>Published</span>
+                <strong id="reviewPublishedCount">0</strong>
+            </div>
+        </div>
+
+        <div class="ss-review-stat">
+            <div class="ss-review-stat-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3v18M3 12h18"></path>
+                    <circle cx="12" cy="12" r="9"></circle>
+                </svg>
+            </div>
+            <div>
+                <span>Average Rating</span>
+                <strong id="reviewAverageRating">0.0</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="ss-reviews-toolbar">
+        <div>
+            <span class="ss-section-eyebrow">Your activity</span>
+            <h2>Reviews you've shared</h2>
+        </div>
+
+        <select id="reviewStatusFilter">
+            <option value="all">All Reviews</option>
+            <option value="Published">Published</option>
+            <option value="Pending">Pending</option>
+        </select>
+    </div>
+
+    <div class="ss-reviews-list" id="reviewsList"></div>
+
+    <div class="ss-reviews-empty" id="reviewsEmpty">
+        <div class="ss-reviews-empty-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"></path>
+            </svg>
+        </div>
+        <span class="ss-section-eyebrow">Nothing here yet</span>
+        <h2>No reviews found</h2>
+        <p>Share your experience with a product you have purchased.</p>
+        <button type="button" class="ss-primary-btn" id="emptyWriteReviewButton">Write a Review</button>
+    </div>
+
+    <section class="ss-product-review-section">
+        <div class="ss-product-review-heading">
+            <div>
+                <span class="ss-section-eyebrow">Product reviews</span>
+                <h2>Recent customer feedback</h2>
+            </div>
+            <span>From the ShopSphere community</span>
+        </div>
+
+        <div class="ss-product-review-grid" id="productReviewGrid"></div>
+    </section>
+</div>
+
+<div class="ss-review-modal" id="reviewModal">
+    <div class="ss-review-modal-backdrop" id="reviewModalBackdrop"></div>
+
+    <div class="ss-review-modal-dialog">
+        <button type="button" class="ss-review-modal-close" id="reviewModalClose" aria-label="Close">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6 18 18M18 6 6 18"></path>
+            </svg>
+        </button>
+
+        <div class="ss-review-modal-head">
+            <span class="ss-section-eyebrow">Share your experience</span>
+            <h2>Write a Review</h2>
+            <p>Tell other shoppers what you think about your purchase.</p>
+        </div>
+
+        <div class="ss-review-form">
+            <div class="ss-review-field">
+                <label for="reviewProduct">Product</label>
+                <select id="reviewProduct"></select>
+            </div>
+
+            <div class="ss-review-field">
+                <label>Rating</label>
+
+                <div class="ss-rating-picker" id="ratingPicker">
+                    <button type="button" data-rating="1">★</button>
+                    <button type="button" data-rating="2">★</button>
+                    <button type="button" data-rating="3">★</button>
+                    <button type="button" data-rating="4">★</button>
+                    <button type="button" data-rating="5">★</button>
+                </div>
+
+                <span class="ss-rating-label" id="ratingLabel">Select a rating</span>
+            </div>
+
+            <div class="ss-review-field">
+                <label for="reviewText">Your Review</label>
+                <textarea id="reviewText" rows="5" placeholder="Share your experience with this product..."></textarea>
+            </div>
+
+            <div class="ss-review-form-actions">
+                <button type="button" class="ss-outline-btn" id="reviewCancelButton">Cancel</button>
+                <button type="button" class="ss-primary-btn" id="submitReviewButton">Submit Review</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const reviewProducts = @Html.Raw(reviewProductsJson);
+</script>

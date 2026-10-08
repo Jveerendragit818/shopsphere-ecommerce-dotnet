@@ -1,0 +1,155 @@
+﻿<nav class="ss-navbar">
+    <div class="ss-navbar-inner">
+
+        <div class="ss-navbar-left">
+
+            <button type="button"
+                    id="sidebarToggle"
+                    class="ss-menu-toggle">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16"></path>
+                </svg>
+
+                <span>Menu</span>
+            </button>
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="ss-brand">
+
+                <span class="ss-brand-mark">S</span>
+                <span>ShopSphere</span>
+            </a>
+
+        </div>
+
+        <div class="ss-search">
+
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5"></circle>
+                <path d="M16 16l5 5"></path>
+            </svg>
+
+            <input type="search"
+                   id="globalSearch"
+                   placeholder="Search products, brands and categories..."
+                   autocomplete="off" />
+
+            <div id="searchSuggestions"
+                 class="ss-search-suggestions">
+
+                <button type="button"
+                        data-search="Wireless Headphones">
+                    Wireless Headphones
+                </button>
+
+                <button type="button"
+                        data-search="Smart Watch">
+                    Smart Watch
+                </button>
+
+                <button type="button"
+                        data-search="Laptop">
+                    Laptop
+                </button>
+
+                <button type="button"
+                        data-search="Shoes">
+                    Shoes
+                </button>
+
+                <button type="button"
+                        data-search="Jewellery">
+                    Jewellery
+                </button>
+
+                <button type="button"
+                        data-search="Accessories">
+                    Accessories
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="ss-navbar-actions">
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="ss-nav-action">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 11.5 12 4l9 7.5"></path>
+                    <path d="M5.5 10.5V20h13v-9.5"></path>
+                    <path d="M9.5 20v-6h5v6"></path>
+                </svg>
+
+                <span>Home</span>
+            </a>
+
+            <a asp-controller="Product"
+               asp-action="Index"
+               class="ss-nav-action">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 8h14l-1 12H6L5 8Z"></path>
+                    <path d="M8 8a4 4 0 0 1 8 0"></path>
+                </svg>
+
+                <span>Shop</span>
+            </a>
+
+            <a asp-controller="Category"
+               asp-action="Index"
+               class="ss-nav-action">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="6" cy="6" r="2"></circle>
+                    <circle cx="18" cy="12" r="2"></circle>
+                    <circle cx="6" cy="18" r="2"></circle>
+                    <path d="m8 7 8 4M8 17l8-4"></path>
+                </svg>
+
+                <span>Categories</span>
+            </a>
+
+           <a asp-controller="Account" asp-action="Orders" class="ss-nav-action">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 3h12v18H6z"></path>
+        <path d="M9 7h6M9 11h6M9 15h4"></path>
+    </svg>
+    <span>Orders</span>
+</a>
+
+            <a asp-controller="Account" asp-action="Wishlist" class="ss-nav-action ss-badge-wrap">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.8 8.8c0 5.2-8.8 10.2-8.8 10.2S3.2 14 3.2 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"></path>
+    </svg>
+    <span>Wishlist</span>
+    <b class="ss-count">3</b>
+</a>
+<a asp-controller="Cart" asp-action="Index" class="ss-nav-action ss-badge-wrap">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 5h2l2 11h10l2-8H7"></path>
+        <circle cx="10" cy="20" r="1.5"></circle>
+        <circle cx="17" cy="20" r="1.5"></circle>
+    </svg>
+    <span>Cart</span>
+    <b class="ss-count">2</b>
+</a>
+
+            <<a asp-controller="Account" asp-action="Login" class="ss-nav-action">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 4h5v16h-5"></path>
+        <path d="M4 12h11"></path>
+        <path d="m11 8 4 4-4 4"></path>
+    </svg>
+    <span>Login</span>
+</a>
+
+        </div>
+
+    </div>
+</nav>

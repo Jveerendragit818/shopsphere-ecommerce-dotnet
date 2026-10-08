@@ -1,0 +1,292 @@
+﻿```cshtml
+@model List<ShopSphere.Web.Models.ProductViewModel>
+@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<section class="ss-shop-page">
+
+    <div class="ss-shop-heading">
+        <div>
+            <span class="ss-section-eyebrow">SHOP ALL PRODUCTS</span>
+
+            <h1>
+                Discover something<br />
+                <em>worth bringing home.</em>
+            </h1>
+
+            <p>
+                Explore products across electronics, fashion, jewellery, shoes,
+                accessories and home appliances.
+            </p>
+        </div>
+
+        <div class="ss-shop-heading-meta">
+            <strong id="shopProductCount">@Model.Count products</strong>
+            <span>Curated for everyday shopping</span>
+        </div>
+    </div>
+
+    <div class="ss-shop-toolbar">
+
+        <div class="ss-shop-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4.5 4.5" />
+            </svg>
+
+            <input type="search"
+                   id="shopSearch"
+                   placeholder="Search products or brands..." />
+        </div>
+
+        <button type="button"
+                id="filterToggle"
+                class="ss-filter-mobile-btn">
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6h16M7 12h10M10 18h4" />
+            </svg>
+
+            Filters
+        </button>
+
+        <div class="ss-sort-control">
+            <label for="sortProducts">Sort by</label>
+
+            <select id="sortProducts">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="name">Name: A-Z</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="ss-shop-layout">
+
+        <aside class="ss-shop-filters" id="shopFilters">
+
+            <div class="ss-mobile-filter-head">
+                <strong>Filters</strong>
+
+                <button type="button"
+                        id="filterClose"
+                        aria-label="Close filters">
+                    ×
+                </button>
+            </div>
+
+            <div class="ss-filter-group">
+
+                <div class="ss-filter-heading">
+                    <strong>Category</strong>
+
+                    <button type="button"
+                            class="ss-clear-filter"
+                            data-clear="category">
+                        Clear
+                    </button>
+                </div>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="Electronics"
+                           data-filter-category />
+                    <span>Electronics</span>
+                </label>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="Fashion"
+                           data-filter-category />
+                    <span>Fashion</span>
+                </label>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="Jewellery"
+                           data-filter-category />
+                    <span>Jewellery</span>
+                </label>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="Shoes"
+                           data-filter-category />
+                    <span>Shoes</span>
+                </label>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="Accessories"
+                           data-filter-category />
+                    <span>Accessories</span>
+                </label>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="Home Appliances"
+                           data-filter-category />
+                    <span>Home Appliances</span>
+                </label>
+
+            </div>
+
+            <div class="ss-filter-group">
+
+                <div class="ss-filter-heading">
+                    <strong>Price</strong>
+                </div>
+
+                <label class="ss-range-label">
+                    <span>Maximum price</span>
+                    <strong id="priceValue">₹10,000</strong>
+                </label>
+
+                <input type="range"
+                       id="priceFilter"
+                       min="500"
+                       max="10000"
+                       value="10000"
+                       step="100" />
+
+            </div>
+
+            <div class="ss-filter-group">
+
+                <div class="ss-filter-heading">
+                    <strong>Rating</strong>
+                </div>
+
+                <label class="ss-radio-label">
+                    <input type="radio"
+                           name="ratingFilter"
+                           value="4" />
+                    <span>4.0+ stars</span>
+                </label>
+
+                <label class="ss-radio-label">
+                    <input type="radio"
+                           name="ratingFilter"
+                           value="4.5" />
+                    <span>4.5+ stars</span>
+                </label>
+
+                <label class="ss-radio-label">
+                    <input type="radio"
+                           name="ratingFilter"
+                           value="4.8" />
+                    <span>4.8+ stars</span>
+                </label>
+
+                <label class="ss-radio-label">
+                    <input type="radio"
+                           name="ratingFilter"
+                           value="0"
+                           checked />
+                    <span>Any rating</span>
+                </label>
+
+            </div>
+
+            <div class="ss-filter-group">
+
+                <div class="ss-filter-heading">
+                    <strong>Availability</strong>
+                </div>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="In Stock"
+                           data-filter-availability />
+                    <span>In Stock</span>
+                </label>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="Low Stock"
+                           data-filter-availability />
+                    <span>Low Stock</span>
+                </label>
+
+                <label class="ss-check-label">
+                    <input type="checkbox"
+                           value="Out of Stock"
+                           data-filter-availability />
+                    <span>Out of Stock</span>
+                </label>
+
+            </div>
+
+            <button type="button"
+                    id="clearAllFilters"
+                    class="ss-clear-all-btn">
+                Clear all filters
+            </button>
+
+        </aside>
+
+        <div class="ss-shop-results">
+
+            <div class="ss-active-filters"
+                 id="activeFilters">
+            </div>
+
+            <div class="ss-products-grid"
+                 id="shopProductGrid">
+            </div>
+
+            <div class="ss-empty-products"
+                 id="emptyProducts">
+
+                <div class="ss-empty-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5" />
+                        <path d="m16 16 4.5 4.5" />
+                    </svg>
+                </div>
+
+                <h2>No products found</h2>
+
+                <p>
+                    Try changing your search or filters.
+                </p>
+
+                <button type="button"
+                        id="emptyClearFilters">
+                    Clear Filters
+                </button>
+
+            </div>
+
+            <div class="ss-pagination"
+                 id="shopPagination">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div class="ss-filter-overlay"
+     id="filterOverlay">
+</div>
+
+<script>
+    const selectedCategory = @Html.Raw(
+                JsonSerializer.Serialize(
+                        Context.Request.Query["category"].ToString()
+                )
+        );
+
+    const shopProducts = @Html.Raw(
+                JsonSerializer.Serialize(Model)
+        );
+</script>
+```
