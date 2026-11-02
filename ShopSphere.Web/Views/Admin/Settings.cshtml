@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "Settings";
+}
+
+<div class="ss-admin-settings-page">
+    <div class="ss-admin-page-heading">
+        <div>
+            <h1>Settings</h1>
+            <p>Manage your store preferences and configuration.</p>
+        </div>
+        <button type="button" class="ss-admin-primary-btn" id="adminSettingsSave">Save Changes</button>
+    </div>
+
+    <form id="adminSettingsForm">
+        <section class="ss-admin-settings-card">
+            <div class="ss-admin-settings-card-heading">
+                <div>
+                    <h2>Store Profile</h2>
+                    <p>Basic information about your store.</p>
+                </div>
+            </div>
+            <div class="ss-admin-settings-grid">
+                <div class="ss-admin-settings-field">
+                    <label for="settingsStoreName">Store Name</label>
+                    <input id="settingsStoreName" name="storeName" type="text" required maxlength="80" />
+                </div>
+                <div class="ss-admin-settings-field">
+                    <label for="settingsStoreEmail">Store Email</label>
+                    <input id="settingsStoreEmail" name="storeEmail" type="email" required />
+                </div>
+                <div class="ss-admin-settings-field">
+                    <label for="settingsStorePhone">Phone Number</label>
+                    <input id="settingsStorePhone" name="storePhone" type="tel" />
+                </div>
+                <div class="ss-admin-settings-field">
+                    <label for="settingsStoreAddress">Store Address</label>
+                    <input id="settingsStoreAddress" name="storeAddress" type="text" />
+                </div>
+            </div>
+        </section>
+
+        <section class="ss-admin-settings-card">
+            <div class="ss-admin-settings-card-heading">
+                <div>
+                    <h2>General Settings</h2>
+                    <p>Choose the default language, currency and timezone.</p>
+                </div>
+            </div>
+            <div class="ss-admin-settings-grid">
+                <div class="ss-admin-settings-field">
+                    <label for="settingsCurrency">Currency</label>
+                    <select id="settingsCurrency" name="currency">
+                        <option value="INR">Indian Rupee (INR)</option>
+                        <option value="USD">US Dollar (USD)</option>
+                        <option value="EUR">Euro (EUR)</option>
+                        <option value="GBP">British Pound (GBP)</option>
+                    </select>
+                </div>
+                <div class="ss-admin-settings-field">
+                    <label for="settingsLanguage">Language</label>
+                    <select id="settingsLanguage" name="language">
+                        <option value="English">English</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Telugu">Telugu</option>
+                    </select>
+                </div>
+                <div class="ss-admin-settings-field">
+                    <label for="settingsTimezone">Timezone</label>
+                    <select id="settingsTimezone" name="timezone">
+                        <option value="Asia/Kolkata">India Standard Time (IST)</option>
+                        <option value="UTC">UTC</option>
+                        <option value="Europe/London">London</option>
+                        <option value="America/New_York">New York</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="ss-admin-settings-card">
+            <div class="ss-admin-settings-card-heading">
+                <div>
+                    <h2>Order & Inventory Alerts</h2>
+                    <p>Choose which store alerts should be enabled.</p>
+                </div>
+            </div>
+            <div class="ss-admin-settings-options">
+                <label class="ss-admin-settings-option">
+                    <span><strong>New Order Alerts</strong><small>Get notified when a new order is placed.</small></span>
+                    <input id="settingsNewOrderAlerts" type="checkbox" />
+                </label>
+                <label class="ss-admin-settings-option">
+                    <span><strong>Low Stock Alerts</strong><small>Get notified when product stock is running low.</small></span>
+                    <input id="settingsLowStockAlerts" type="checkbox" />
+                </label>
+                <label class="ss-admin-settings-option">
+                    <span><strong>Customer Registration Alerts</strong><small>Get notified when a new customer registers.</small></span>
+                    <input id="settingsCustomerAlerts" type="checkbox" />
+                </label>
+            </div>
+            <div class="ss-admin-settings-field ss-admin-settings-threshold">
+                <label for="settingsLowStockThreshold">Low Stock Threshold</label>
+                <input id="settingsLowStockThreshold" type="number" min="1" max="1000" required />
+                <small>Products at or below this quantity are considered low in stock.</small>
+            </div>
+        </section>
+
+        <section class="ss-admin-settings-card">
+            <div class="ss-admin-settings-card-heading">
+                <div>
+                    <h2>Shipping & Returns</h2>
+                    <p>Configure basic shipping and return preferences.</p>
+                </div>
+            </div>
+            <div class="ss-admin-settings-grid">
+                <div class="ss-admin-settings-field">
+                    <label for="settingsShippingFee">Standard Shipping Fee (₹)</label>
+                    <input id="settingsShippingFee" type="number" min="0" step="0.01" required />
+                </div>
+                <div class="ss-admin-settings-field">
+                    <label for="settingsFreeShipping">Free Shipping Minimum (₹)</label>
+                    <input id="settingsFreeShipping" type="number" min="0" step="0.01" required />
+                </div>
+                <div class="ss-admin-settings-field">
+                    <label for="settingsReturnDays">Return Period (Days)</label>
+                    <input id="settingsReturnDays" type="number" min="0" max="365" required />
+                </div>
+            </div>
+        </section>
+
+        <section class="ss-admin-settings-card ss-admin-settings-maintenance">
+            <div class="ss-admin-settings-card-heading">
+                <div>
+                    <h2>Store Maintenance</h2>
+                    <p>Temporarily mark the store as under maintenance.</p>
+                </div>
+                <span class="ss-admin-settings-status" id="settingsMaintenanceStatus">Store Active</span>
+            </div>
+            <label class="ss-admin-settings-option">
+                <span><strong>Maintenance Mode</strong><small>This is a demo setting and does not block customer access yet.</small></span>
+                <input id="settingsMaintenanceMode" type="checkbox" />
+            </label>
+        </section>
+
+        <div class="ss-admin-settings-actions">
+            <button type="button" class="ss-admin-secondary-btn" id="adminSettingsReset">Reset Defaults</button>
+            <button type="submit" class="ss-admin-primary-btn">Save Changes</button>
+        </div>
+    </form>
+</div>

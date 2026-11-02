@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+<div class="ss-admin-reviews-page">
+    <div class="ss-admin-reviews-heading">
+        <div>
+            <span class="ss-admin-eyebrow">CUSTOMER MANAGEMENT</span>
+            <h1>Reviews</h1>
+            <p>Manage customer feedback, moderate reviews and highlight trusted opinions.</p>
+        </div>
+    </div>
+
+    <div class="ss-admin-reviews-stats">
+        <div class="ss-admin-reviews-stat">
+            <span>Total Reviews</span>
+            <strong id="adminReviewTotal">0</strong>
+            <small>All customer reviews</small>
+        </div>
+        <div class="ss-admin-reviews-stat">
+            <span>Published</span>
+            <strong id="adminReviewPublished">0</strong>
+            <small>Visible to customers</small>
+        </div>
+        <div class="ss-admin-reviews-stat">
+            <span>Pending Approval</span>
+            <strong id="adminReviewPending">0</strong>
+            <small>Waiting for moderation</small>
+        </div>
+        <div class="ss-admin-reviews-stat">
+            <span>Average Rating</span>
+            <strong id="adminReviewAverage">0.0</strong>
+            <small>Overall customer rating</small>
+        </div>
+    </div>
+
+    <section class="ss-admin-reviews-panel">
+        <div class="ss-admin-reviews-panel-heading">
+            <div>
+                <h2>Customer Reviews</h2>
+                <p>Review and manage submitted customer feedback.</p>
+            </div>
+            <span id="adminReviewResultCount" class="ss-admin-review-count">0 reviews</span>
+        </div>
+
+        <div class="ss-admin-reviews-toolbar">
+            <div class="ss-admin-review-search">
+                <input type="text" id="adminReviewSearch" placeholder="Search customer or product...">
+            </div>
+            <div class="ss-admin-review-filters">
+                <select id="adminReviewRatingFilter" class="ss-admin-filter-select">
+                    <option value="all">All Ratings</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Star</option>
+                </select>
+                <select id="adminReviewStatusFilter" class="ss-admin-filter-select">
+                    <option value="all">All Status</option>
+                    <option value="Published">Published</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Hidden">Hidden</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="ss-admin-reviews-table-wrap">
+            <table class="ss-admin-reviews-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Rating</th>
+                        <th>Review</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminReviewsTable"></tbody>
+            </table>
+        </div>
+
+        <div class="ss-admin-reviews-empty" id="adminReviewsEmpty" hidden>
+            <h3>No reviews found</h3>
+            <p>Try changing your search or filter settings.</p>
+        </div>
+
+        <div class="ss-admin-reviews-footer">
+            <span id="adminReviewShowing">Showing 0 reviews</span>
+            <div class="ss-admin-pagination" id="adminReviewsPagination"></div>
+        </div>
+    </section>
+</div>

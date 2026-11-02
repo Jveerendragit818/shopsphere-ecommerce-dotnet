@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="ss-admin-customers-page">
+    <div class="ss-admin-customers-heading">
+        <div>
+            <span class="ss-admin-customers-eyebrow">CUSTOMER MANAGEMENT</span>
+            <h1>Customers</h1>
+            <p>Manage customer information, account status and shopping activity.</p>
+        </div>
+        <button type="button" class="ss-admin-customers-primary-btn" id="adminAddCustomerBtn">+ Add Customer</button>
+    </div>
+
+    <div class="ss-admin-customers-stats">
+        <div class="ss-admin-customers-stat"><span>Total Customers</span><strong id="adminCustomersTotal">0</strong><small>All customer records</small></div>
+        <div class="ss-admin-customers-stat"><span>Active Customers</span><strong id="adminCustomersActive">0</strong><small>Active store accounts</small></div>
+        <div class="ss-admin-customers-stat"><span>Inactive Customers</span><strong id="adminCustomersInactive">0</strong><small>Inactive accounts</small></div>
+        <div class="ss-admin-customers-stat"><span>Customers with Orders</span><strong id="adminCustomersWithOrders">0</strong><small>Customers with order history</small></div>
+    </div>
+
+    <section class="ss-admin-customers-panel">
+        <div class="ss-admin-customers-panel-heading">
+            <div>
+                <h2>All Customers</h2>
+                <p>Search customer records and manage account status.</p>
+            </div>
+            <span class="ss-admin-customers-count" id="adminCustomersCount">0 customers</span>
+        </div>
+
+        <div class="ss-admin-customers-toolbar">
+            <div class="ss-admin-customers-search">
+                <span aria-hidden="true">⌕</span>
+                <input type="search" id="adminCustomersSearch" placeholder="Search name, email or customer ID..." aria-label="Search customers">
+            </div>
+            <select id="adminCustomersStatusFilter" aria-label="Filter customers by status">
+                <option value="all">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </div>
+
+        <div class="ss-admin-customers-table-wrap">
+            <table class="ss-admin-customers-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Contact</th>
+                        <th>Orders</th>
+                        <th>Total Spent</th>
+                        <th>Joined</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminCustomersTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="ss-admin-customers-empty" id="adminCustomersEmpty" hidden>
+            <div class="ss-admin-customers-empty-icon">♙</div>
+            <h3>No customers found</h3>
+            <p>Try another search or add a customer record.</p>
+        </div>
+
+        <div class="ss-admin-customers-footer">
+            <span id="adminCustomersPageInfo">Showing 0 customers</span>
+            <div id="adminCustomersPagination" class="ss-admin-customers-pagination"></div>
+        </div>
+    </section>
+</div>
+
+<div class="ss-admin-customer-modal-backdrop" id="adminCustomerModal" hidden>
+    <section class="ss-admin-customer-modal" role="dialog" aria-modal="true" aria-labelledby="adminCustomerModalTitle">
+        <div class="ss-admin-customer-modal-heading">
+            <div>
+                <span class="ss-admin-customers-eyebrow">CUSTOMER INFORMATION</span>
+                <h2 id="adminCustomerModalTitle">Add Customer</h2>
+                <p>Create or update a customer record.</p>
+            </div>
+            <button type="button" class="ss-admin-customer-close-btn" id="adminCustomerCloseBtn" aria-label="Close">×</button>
+        </div>
+
+        <form id="adminCustomerForm">
+            <input type="hidden" id="adminCustomerId">
+
+            <div class="ss-admin-customer-form-field">
+                <label for="adminCustomerName">Full Name</label>
+                <input type="text" id="adminCustomerName" maxlength="100" required placeholder="Enter full name">
+                <small id="adminCustomerNameError"></small>
+            </div>
+
+            <div class="ss-admin-customer-form-field">
+                <label for="adminCustomerEmail">Email Address</label>
+                <input type="email" id="adminCustomerEmail" maxlength="150" required placeholder="customer@example.com">
+                <small id="adminCustomerEmailError"></small>
+            </div>
+
+            <div class="ss-admin-customer-form-field">
+                <label for="adminCustomerPhone">Phone Number</label>
+                <input type="tel" id="adminCustomerPhone" maxlength="20" placeholder="Enter phone number">
+                <small id="adminCustomerPhoneError"></small>
+            </div>
+
+            <div class="ss-admin-customer-form-field">
+                <label for="adminCustomerAddress">Address</label>
+                <textarea id="adminCustomerAddress" rows="3" maxlength="300" placeholder="Enter customer address"></textarea>
+            </div>
+
+            <div class="ss-admin-customer-form-field">
+                <label for="adminCustomerStatus">Account Status</label>
+                <select id="adminCustomerStatus">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+
+            <div class="ss-admin-customer-modal-actions">
+                <button type="button" class="ss-admin-customer-cancel-btn" id="adminCustomerCancelBtn">Cancel</button>
+                <button type="submit" class="ss-admin-customers-primary-btn" id="adminCustomerSaveBtn">Save Customer</button>
+            </div>
+        </form>
+    </section>
+</div>

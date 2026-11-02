@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="ss-admin-page ss-categories-page">
+    <div class="ss-admin-page-heading">
+        <div>
+            <span class="ss-admin-eyebrow">CATALOG MANAGEMENT</span>
+            <h1>Categories</h1>
+            <p>Organize your products and manage store categories.</p>
+        </div>
+        <button type="button" class="ss-admin-primary-btn" id="addCategoryBtn">+ Add Category</button>
+    </div>
+
+    <div class="ss-category-stats">
+        <div class="ss-category-stat-card"><span>Total Categories</span><strong id="categoryTotal">0</strong><small>All store categories</small></div>
+        <div class="ss-category-stat-card"><span>Active Categories</span><strong id="categoryActive">0</strong><small>Visible in the store</small></div>
+        <div class="ss-category-stat-card"><span>Inactive Categories</span><strong id="categoryInactive">0</strong><small>Currently disabled</small></div>
+        <div class="ss-category-stat-card"><span>Categories in Use</span><strong id="categoryUsed">0</strong><small>With assigned products</small></div>
+    </div>
+
+    <section class="ss-category-panel">
+        <div class="ss-category-panel-heading">
+            <div>
+                <h2>All Categories</h2>
+                <p>Manage category details and availability.</p>
+            </div>
+            <span class="ss-category-result-count" id="categoryResultCount">0 categories</span>
+        </div>
+
+        <div class="ss-category-toolbar">
+            <div class="ss-category-search">
+                <span aria-hidden="true">⌕</span>
+                <input type="search" id="categorySearch" placeholder="Search categories..." aria-label="Search categories">
+            </div>
+            <select id="categoryStatusFilter" aria-label="Filter by status">
+                <option value="all">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </div>
+
+        <div class="ss-category-table-wrap">
+            <table class="ss-category-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Products</th>
+                        <th>Status</th>
+                        <th>Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="categoryTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="ss-category-empty" id="categoryEmpty" hidden>
+            <div class="ss-category-empty-icon">▤</div>
+            <h3>No categories found</h3>
+            <p>Try another search or add a new category.</p>
+        </div>
+    </section>
+</div>
+
+<div class="ss-category-modal-backdrop" id="categoryModalBackdrop" hidden>
+    <section class="ss-category-modal" role="dialog" aria-modal="true" aria-labelledby="categoryModalTitle">
+        <div class="ss-category-modal-heading">
+            <div>
+                <span class="ss-admin-eyebrow">CATEGORY DETAILS</span>
+                <h2 id="categoryModalTitle">Add Category</h2>
+            </div>
+            <button type="button" class="ss-category-modal-close" id="closeCategoryModal" aria-label="Close">×</button>
+        </div>
+
+        <form id="categoryForm">
+            <input type="hidden" id="categoryId">
+
+            <div class="ss-category-form-field">
+                <label for="categoryName">Category Name</label>
+                <input type="text" id="categoryName" maxlength="60" required placeholder="e.g. Electronics">
+                <small class="ss-category-error" id="categoryNameError"></small>
+            </div>
+
+            <div class="ss-category-form-field">
+                <label for="categoryDescription">Description</label>
+                <textarea id="categoryDescription" maxlength="240" rows="4" placeholder="Describe the products in this category"></textarea>
+                <small class="ss-category-error" id="categoryDescriptionError"></small>
+            </div>
+
+            <div class="ss-category-form-field">
+                <label for="categoryStatus">Status</label>
+                <select id="categoryStatus">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+
+            <div class="ss-category-modal-actions">
+                <button type="button" class="ss-category-cancel-btn" id="cancelCategoryBtn">Cancel</button>
+                <button type="submit" class="ss-admin-primary-btn" id="saveCategoryBtn">Save Category</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+@section Scripts {
+    <script>
+        document.title = "Categories | ShopSphere Admin";
+    </script>
+}

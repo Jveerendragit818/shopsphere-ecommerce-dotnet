@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Notifications";
+}
+
+<div class="ss-admin-notifications-page">
+    <div class="ss-admin-notifications-heading">
+        <div>
+            <span class="ss-admin-eyebrow">SYSTEM MANAGEMENT</span>
+            <h1>Notifications</h1>
+            <p>Stay updated with orders, customers, inventory and store activities.</p>
+        </div>
+        <div class="ss-admin-notification-heading-actions">
+            <button type="button" class="ss-admin-secondary-btn" id="adminMarkAllRead">Mark All as Read</button>
+            <button type="button" class="ss-admin-notification-clear" id="adminClearNotifications">Clear All</button>
+        </div>
+    </div>
+
+    <div class="ss-admin-notifications-stats">
+        <div class="ss-admin-notification-stat">
+            <span>Total Notifications</span>
+            <strong id="adminNotificationTotal">0</strong>
+            <small>All notifications</small>
+        </div>
+        <div class="ss-admin-notification-stat">
+            <span>Unread</span>
+            <strong id="adminNotificationUnread">0</strong>
+            <small>Needs attention</small>
+        </div>
+        <div class="ss-admin-notification-stat">
+            <span>Read</span>
+            <strong id="adminNotificationRead">0</strong>
+            <small>Already viewed</small>
+        </div>
+        <div class="ss-admin-notification-stat">
+            <span>Orders</span>
+            <strong id="adminNotificationOrders">0</strong>
+            <small>Order-related alerts</small>
+        </div>
+    </div>
+
+    <section class="ss-admin-notifications-panel">
+        <div class="ss-admin-notifications-panel-heading">
+            <div>
+                <h2>All Notifications</h2>
+                <p>Manage your latest store updates and alerts.</p>
+            </div>
+            <span class="ss-admin-notification-count" id="adminNotificationCount">0 notifications</span>
+        </div>
+
+        <div class="ss-admin-notifications-toolbar">
+            <div class="ss-admin-notification-search">
+                <input type="text" id="adminNotificationSearch" placeholder="Search notifications...">
+            </div>
+            <div class="ss-admin-notification-filters">
+                <select id="adminNotificationType" class="ss-admin-filter-select">
+                    <option value="all">All Types</option>
+                    <option value="Order">Orders</option>
+                    <option value="Customer">Customers</option>
+                    <option value="Inventory">Inventory</option>
+                    <option value="Payment">Payments</option>
+                    <option value="System">System</option>
+                </select>
+                <select id="adminNotificationStatus" class="ss-admin-filter-select">
+                    <option value="all">All Status</option>
+                    <option value="Unread">Unread</option>
+                    <option value="Read">Read</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="ss-admin-notification-list" id="adminNotificationList"></div>
+
+        <div class="ss-admin-notifications-empty" id="adminNotificationsEmpty" hidden>
+            <div class="ss-admin-notification-empty-icon">♧</div>
+            <h3>No notifications found</h3>
+            <p>There are no notifications matching your search or filters.</p>
+        </div>
+
+        <div class="ss-admin-notifications-footer">
+            <span id="adminNotificationShowing">Showing 0 notifications</span>
+            <div class="ss-admin-pagination" id="adminNotificationPagination"></div>
+        </div>
+    </section>
+</div>

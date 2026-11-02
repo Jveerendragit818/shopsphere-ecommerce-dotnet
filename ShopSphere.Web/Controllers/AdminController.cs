@@ -37,4 +37,54 @@ public class AdminController : Controller
         return View();
     }
 
+    [HttpGet("/admin/inventory")]
+    public IActionResult Inventory()
+    {
+        return View("~/Views/Admin/Inventory.cshtml");
+    }
+
+    [HttpGet("/admin/orders")]
+    public IActionResult Orders()
+    {
+        return View("~/Views/Admin/Orders.cshtml");
+    }
+
+    [HttpGet("/admin/customers")]
+    public IActionResult Customers()
+    {
+        return View("~/Views/Admin/Customers.cshtml");
+    }
+
+    [HttpGet("/admin/customers/details")]
+    public IActionResult CustomerDetails()
+    {
+        return View("~/Views/Admin/CustomerDetails.cshtml");
+    }
+    [HttpGet("/admin/reviews")]
+    public IActionResult Reviews()
+    {
+        return View("~/Views/Admin/Reviews.cshtml");
+    }
+    [HttpGet("/admin/reports")]
+    public IActionResult Reports()
+    {
+        return View("~/Views/Admin/Reports.cshtml");
+    }
+    [HttpGet("/admin/notifications")]
+    public IActionResult Notifications()
+    {
+        return View("~/Views/Admin/Notifications.cshtml");
+    }
+    [HttpGet("/admin/settings")]
+    public IActionResult Settings()
+    {
+        return View("~/Views/Admin/Settings.cshtml");
+    }
+    [HttpGet("/admin/categories")]
+    public IActionResult Categories()
+    {
+        return View("~/Views/Admin/Categories.cshtml");
+    }
+
+
 }

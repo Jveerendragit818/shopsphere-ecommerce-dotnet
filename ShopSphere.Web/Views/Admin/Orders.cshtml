@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="ss-admin-orders-page">
+    <div class="ss-admin-orders-heading">
+        <div>
+            <span class="ss-admin-orders-eyebrow">ORDER MANAGEMENT</span>
+            <h1>Orders</h1>
+            <p>Track customer orders, review payments and manage fulfillment.</p>
+        </div>
+        <button type="button" class="ss-admin-orders-refresh" id="adminOrdersRefresh">↻ Refresh</button>
+    </div>
+
+    <div class="ss-admin-orders-stats">
+        <div class="ss-admin-orders-stat"><span>Total Orders</span><strong id="adminOrderTotal">0</strong><small>All recorded orders</small></div>
+        <div class="ss-admin-orders-stat"><span>Needs Processing</span><strong id="adminOrderPending">0</strong><small>Confirmed or packed</small></div>
+        <div class="ss-admin-orders-stat"><span>In Transit</span><strong id="adminOrderTransit">0</strong><small>Shipping in progress</small></div>
+        <div class="ss-admin-orders-stat"><span>Delivered Revenue</span><strong id="adminOrderRevenue">₹0</strong><small>Successfully delivered orders</small></div>
+    </div>
+
+    <section class="ss-admin-orders-panel">
+        <div class="ss-admin-orders-panel-heading">
+            <div>
+                <h2>All Orders</h2>
+                <p>Review order information and update fulfillment status.</p>
+            </div>
+            <span class="ss-admin-orders-count" id="adminOrdersCount">0 orders</span>
+        </div>
+
+        <div class="ss-admin-orders-toolbar">
+            <div class="ss-admin-orders-search">
+                <span aria-hidden="true">⌕</span>
+                <input type="search" id="adminOrdersSearch" placeholder="Search order ID or customer..." aria-label="Search orders">
+            </div>
+            <select id="adminOrdersStatus" aria-label="Filter by order status">
+                <option value="all">All Statuses</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Packed">Packed</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="Failed">Failed</option>
+            </select>
+            <select id="adminOrdersPayment" aria-label="Filter by payment method">
+                <option value="all">All Payments</option>
+                <option value="UPI">UPI</option>
+                <option value="Card">Card</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+        </div>
+
+        <div class="ss-admin-orders-table-wrap">
+            <table class="ss-admin-orders-management-table">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminOrdersTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="ss-admin-orders-empty" id="adminOrdersEmpty" hidden>
+            <div class="ss-admin-orders-empty-icon">▤</div>
+            <h3>No orders found</h3>
+            <p>Try changing your search or filters.</p>
+        </div>
+
+        <div class="ss-admin-orders-footer">
+            <span id="adminOrdersPageInfo">Showing 0 orders</span>
+            <div id="adminOrdersPagination" class="ss-admin-orders-pagination"></div>
+        </div>
+    </section>
+</div>
+
+<div class="ss-admin-order-modal-backdrop" id="adminOrderModal" hidden>
+    <section class="ss-admin-order-modal" role="dialog" aria-modal="true" aria-labelledby="adminOrderModalTitle">
+        <div class="ss-admin-order-modal-heading">
+            <div>
+                <span class="ss-admin-orders-eyebrow">ORDER DETAILS</span>
+                <h2 id="adminOrderModalTitle">Order Details</h2>
+                <p id="adminOrderModalSubtitle">Review order information.</p>
+            </div>
+            <button type="button" class="ss-admin-order-modal-close" id="adminOrderModalClose" aria-label="Close">×</button>
+        </div>
+
+        <div class="ss-admin-order-detail-grid">
+            <div><span>Customer</span><strong id="adminOrderDetailCustomer">—</strong></div>
+            <div><span>Order Date</span><strong id="adminOrderDetailDate">—</strong></div>
+            <div><span>Items</span><strong id="adminOrderDetailItems">—</strong></div>
+            <div><span>Total Amount</span><strong id="adminOrderDetailTotal">—</strong></div>
+            <div><span>Payment Method</span><strong id="adminOrderDetailPayment">—</strong></div>
+            <div><span>Shipping Address</span><strong id="adminOrderDetailAddress">—</strong></div>
+        </div>
+
+        <form id="adminOrderStatusForm">
+            <input type="hidden" id="adminOrderSelectedId">
+            <div class="ss-admin-order-form-field">
+                <label for="adminOrderNewStatus">Update Order Status</label>
+                <select id="adminOrderNewStatus" required>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Packed">Packed</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Out for Delivery">Out for Delivery</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option value="Failed">Failed</option>
+                </select>
+                <small id="adminOrderStatusError"></small>
+            </div>
+            <div class="ss-admin-order-modal-actions">
+                <button type="button" class="ss-admin-order-cancel-btn" id="adminOrderCancelBtn">Close</button>
+                <button type="submit" class="ss-admin-order-save-btn">Save Status</button>
+            </div>
+        </form>
+    </section>
+</div>

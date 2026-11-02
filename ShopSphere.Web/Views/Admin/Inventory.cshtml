@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<div class="ss-inventory-page">
+    <div class="ss-inventory-heading">
+        <div>
+            <span class="ss-inventory-eyebrow">CATALOG MANAGEMENT</span>
+            <h1>Inventory</h1>
+            <p>Track available stock and manage product quantities.</p>
+        </div>
+        <a href="/admin/products" class="ss-inventory-secondary-btn">View Products</a>
+    </div>
+
+    <div class="ss-inventory-stats">
+        <div class="ss-inventory-stat-card"><span>Total Products</span><strong id="inventoryTotal">0</strong><small>Products being tracked</small></div>
+        <div class="ss-inventory-stat-card"><span>Healthy Stock</span><strong id="inventoryHealthy">0</strong><small>More than 10 units</small></div>
+        <div class="ss-inventory-stat-card"><span>Low Stock</span><strong id="inventoryLow">0</strong><small>1–10 units remaining</small></div>
+        <div class="ss-inventory-stat-card"><span>Out of Stock</span><strong id="inventoryOut">0</strong><small>Replenishment required</small></div>
+    </div>
+
+    <section class="ss-inventory-panel">
+        <div class="ss-inventory-panel-heading">
+            <div>
+                <h2>Stock Overview</h2>
+                <p>Review product quantities and make inventory adjustments.</p>
+            </div>
+            <span id="inventoryResultCount" class="ss-inventory-count">0 products</span>
+        </div>
+
+        <div class="ss-inventory-toolbar">
+            <div class="ss-inventory-search">
+                <span aria-hidden="true">⌕</span>
+                <input type="search" id="inventorySearch" placeholder="Search product, brand or ID..." aria-label="Search inventory">
+            </div>
+            <select id="inventoryCategoryFilter" aria-label="Filter by category">
+                <option value="all">All Categories</option>
+            </select>
+            <select id="inventoryStatusFilter" aria-label="Filter by stock status">
+                <option value="all">All Stock Levels</option>
+                <option value="in-stock">Healthy Stock</option>
+                <option value="low-stock">Low Stock</option>
+                <option value="out-of-stock">Out of Stock</option>
+            </select>
+        </div>
+
+        <div class="ss-inventory-table-wrap">
+            <table class="ss-inventory-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Unit Price</th>
+                        <th>Available Stock</th>
+                        <th>Stock Status</th>
+                        <th>Last Updated</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="ss-inventory-empty" id="inventoryEmpty" hidden>
+            <div class="ss-inventory-empty-icon">▤</div>
+            <h3>No inventory found</h3>
+            <p>Try changing your search or filters.</p>
+        </div>
+    </section>
+</div>
+
+<div class="ss-inventory-modal-backdrop" id="inventoryModal" hidden>
+    <section class="ss-inventory-modal" role="dialog" aria-modal="true" aria-labelledby="inventoryModalTitle">
+        <div class="ss-inventory-modal-heading">
+            <div>
+                <span class="ss-inventory-eyebrow">STOCK CONTROL</span>
+                <h2 id="inventoryModalTitle">Adjust Stock</h2>
+                <p id="inventoryProductName">Product</p>
+            </div>
+            <button type="button" id="inventoryCloseBtn" class="ss-inventory-close-btn" aria-label="Close">×</button>
+        </div>
+
+        <div class="ss-inventory-current">
+            <span>Current available stock</span>
+            <strong id="inventoryCurrentStock">0 units</strong>
+        </div>
+
+        <form id="inventoryAdjustForm">
+            <input type="hidden" id="inventoryProductId">
+
+            <div class="ss-inventory-form-field">
+                <label for="inventoryAdjustmentType">Adjustment Type</label>
+                <select id="inventoryAdjustmentType">
+                    <option value="increase">Add Stock</option>
+                    <option value="decrease">Remove Stock</option>
+                    <option value="set">Set Exact Quantity</option>
+                </select>
+            </div>
+
+            <div class="ss-inventory-form-field">
+                <label for="inventoryAdjustmentQty" id="inventoryQuantityLabel">Quantity to Add</label>
+                <input type="number" id="inventoryAdjustmentQty" min="0" step="1" value="1" required>
+                <small class="ss-inventory-error" id="inventoryAdjustmentError"></small>
+            </div>
+
+            <div class="ss-inventory-preview">
+                <span>New available stock</span>
+                <strong id="inventoryNewStockPreview">1 units</strong>
+            </div>
+
+            <div class="ss-inventory-modal-actions">
+                <button type="button" id="inventoryCancelBtn" class="ss-inventory-cancel-btn">Cancel</button>
+                <button type="submit" class="ss-inventory-save-btn">Save Adjustment</button>
+            </div>
+        </form>
+    </section>
+</div>

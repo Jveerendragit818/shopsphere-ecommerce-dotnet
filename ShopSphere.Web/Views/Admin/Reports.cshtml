@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+}
+
+<div class="ss-admin-reports-page">
+    <div class="ss-admin-reports-heading">
+        <div>
+            <span class="ss-admin-eyebrow">ANALYTICS & INSIGHTS</span>
+            <h1>Reports</h1>
+            <p>Track store performance, sales trends and customer activity.</p>
+        </div>
+        <div class="ss-admin-reports-heading-actions">
+            <select id="adminReportPeriod" class="ss-admin-filter-select">
+                <option value="7">Last 7 Days</option>
+                <option value="30" selected>Last 30 Days</option>
+                <option value="90">Last 90 Days</option>
+                <option value="365">This Year</option>
+            </select>
+            <button type="button" class="ss-admin-primary-btn" id="adminReportExport">↓ Export Report</button>
+        </div>
+    </div>
+
+    <div class="ss-admin-reports-stats">
+        <div class="ss-admin-report-stat">
+            <span>Total Revenue</span>
+            <strong id="reportTotalRevenue">₹0</strong>
+            <small>Revenue generated</small>
+        </div>
+        <div class="ss-admin-report-stat">
+            <span>Total Orders</span>
+            <strong id="reportTotalOrders">0</strong>
+            <small>Orders received</small>
+        </div>
+        <div class="ss-admin-report-stat">
+            <span>Average Order Value</span>
+            <strong id="reportAverageOrder">₹0</strong>
+            <small>Average per order</small>
+        </div>
+        <div class="ss-admin-report-stat">
+            <span>Total Customers</span>
+            <strong id="reportTotalCustomers">0</strong>
+            <small>Customers registered</small>
+        </div>
+    </div>
+
+    <div class="ss-admin-reports-chart-grid">
+        <section class="ss-admin-report-panel ss-admin-report-sales-panel">
+            <div class="ss-admin-report-panel-heading">
+                <div>
+                    <h2>Sales Overview</h2>
+                    <p>Revenue performance over time</p>
+                </div>
+                <span class="ss-admin-report-panel-icon">↗</span>
+            </div>
+            <div class="ss-admin-report-chart">
+                <canvas id="adminSalesChart"></canvas>
+            </div>
+        </section>
+
+        <section class="ss-admin-report-panel">
+            <div class="ss-admin-report-panel-heading">
+                <div>
+                    <h2>Order Status</h2>
+                    <p>Distribution of order statuses</p>
+                </div>
+                <span class="ss-admin-report-panel-icon">◷</span>
+            </div>
+            <div class="ss-admin-report-status-chart" id="adminOrderStatusChart"></div>
+        </section>
+    </div>
+
+    <div class="ss-admin-reports-bottom-grid">
+        <section class="ss-admin-report-panel">
+            <div class="ss-admin-report-panel-heading">
+                <div>
+                    <h2>Top Selling Products</h2>
+                    <p>Products performing best in sales</p>
+                </div>
+            </div>
+            <div class="ss-admin-report-products" id="adminTopProducts"></div>
+        </section>
+
+        <section class="ss-admin-report-panel">
+            <div class="ss-admin-report-panel-heading">
+                <div>
+                    <h2>Revenue by Category</h2>
+                    <p>Sales contribution by category</p>
+                </div>
+            </div>
+            <div class="ss-admin-report-category-chart" id="adminCategoryRevenue"></div>
+        </section>
+    </div>
+
+    <section class="ss-admin-report-panel ss-admin-report-activity">
+        <div class="ss-admin-report-panel-heading">
+            <div>
+                <h2>Customer Activity</h2>
+                <p>Recent customer engagement and purchases</p>
+            </div>
+        </div>
+        <div class="ss-admin-report-table-wrap">
+            <table class="ss-admin-report-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Total Orders</th>
+                        <th>Total Spending</th>
+                        <th>Last Activity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="adminReportCustomers"></tbody>
+            </table>
+        </div>
+    </section>
+</div>

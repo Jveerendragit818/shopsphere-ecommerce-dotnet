@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<div class="ss-admin-customer-details-page">
+    <div class="ss-admin-customer-details-heading">
+        <div>
+            <a href="/admin/customers" class="ss-admin-customer-back">← Back to Customers</a>
+            <span class="ss-admin-customer-details-eyebrow">CUSTOMER MANAGEMENT</span>
+            <h1>Customer Details</h1>
+            <p>Review customer account information and shopping activity.</p>
+        </div>
+        <a href="/admin/customers" id="adminCustomerDetailsEdit" class="ss-admin-customer-details-edit">Edit Customer</a>
+    </div>
+
+    <div id="adminCustomerDetailsContent">
+        <div class="ss-admin-customer-profile-card">
+            <div class="ss-admin-customer-profile-avatar" id="customerDetailsAvatar">C</div>
+            <div class="ss-admin-customer-profile-main">
+                <span class="ss-admin-customer-details-eyebrow">CUSTOMER PROFILE</span>
+                <h2 id="customerDetailsName">Loading customer...</h2>
+                <p id="customerDetailsId">Customer ID</p>
+            </div>
+            <span id="customerDetailsStatus" class="ss-admin-customer-details-status active">Active</span>
+        </div>
+
+        <div class="ss-admin-customer-details-stats">
+            <div class="ss-admin-customer-details-stat"><span>Total Orders</span><strong id="customerDetailsOrders">0</strong><small>Orders placed</small></div>
+            <div class="ss-admin-customer-details-stat"><span>Total Spending</span><strong id="customerDetailsSpending">₹0</strong><small>Delivered orders</small></div>
+            <div class="ss-admin-customer-details-stat"><span>Delivered</span><strong id="customerDetailsDelivered">0</strong><small>Successfully delivered</small></div>
+            <div class="ss-admin-customer-details-stat"><span>Pending / In Transit</span><strong id="customerDetailsPending">0</strong><small>Orders being processed</small></div>
+        </div>
+
+        <div class="ss-admin-customer-details-grid">
+            <section class="ss-admin-customer-details-panel">
+                <div class="ss-admin-customer-details-panel-heading">
+                    <div>
+                        <h2>Personal Information</h2>
+                        <p>Customer contact details</p>
+                    </div>
+                    <span class="ss-admin-customer-details-panel-icon">♙</span>
+                </div>
+                <div class="ss-admin-customer-info-list">
+                    <div><span>Full Name</span><strong id="customerDetailsFullName">—</strong></div>
+                    <div><span>Email Address</span><strong id="customerDetailsEmail">—</strong></div>
+                    <div><span>Phone Number</span><strong id="customerDetailsPhone">—</strong></div>
+                    <div><span>Address</span><strong id="customerDetailsAddress">—</strong></div>
+                </div>
+            </section>
+
+            <section class="ss-admin-customer-details-panel">
+                <div class="ss-admin-customer-details-panel-heading">
+                    <div>
+                        <h2>Account Information</h2>
+                        <p>Registration and account status</p>
+                    </div>
+                    <span class="ss-admin-customer-details-panel-icon">◇</span>
+                </div>
+                <div class="ss-admin-customer-info-list">
+                    <div><span>Customer ID</span><strong id="customerDetailsAccountId">—</strong></div>
+                    <div><span>Registration Date</span><strong id="customerDetailsJoined">—</strong></div>
+                    <div><span>Account Status</span><strong id="customerDetailsAccountStatus">—</strong></div>
+                    <div><span>Order Activity</span><strong id="customerDetailsActivity">—</strong></div>
+                </div>
+            </section>
+        </div>
+
+        <section class="ss-admin-customer-details-panel ss-admin-customer-order-history">
+            <div class="ss-admin-customer-details-panel-heading">
+                <div>
+                    <h2>Order History</h2>
+                    <p>Orders associated with this customer</p>
+                </div>
+                <span class="ss-admin-customer-details-order-count" id="customerDetailsOrderCount">0 orders</span>
+            </div>
+
+            <div class="ss-admin-customer-details-table-wrap">
+                <table class="ss-admin-customer-details-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Payment</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerDetailsOrderTable"></tbody>
+                </table>
+            </div>
+
+            <div class="ss-admin-customer-details-empty" id="customerDetailsNoOrders" hidden>
+                <h3>No orders yet</h3>
+                <p>Order history will appear here when orders are associated with this customer.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="ss-admin-customer-details-not-found" id="customerDetailsNotFound" hidden>
+        <h2>Customer not found</h2>
+        <p>The customer may have been removed, or the customer ID in the URL is missing or invalid.</p>
+        <a href="/admin/customers" class="ss-admin-customer-details-edit">Back to Customers</a>
+    </div>
+</div>
