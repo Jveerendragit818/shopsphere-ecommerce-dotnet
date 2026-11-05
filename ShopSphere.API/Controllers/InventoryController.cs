@@ -54,4 +54,4 @@ public sealed class InventoryController : ControllerBase
 
         return updated ? NoContent() : NotFound();
     }
-}
+}   
