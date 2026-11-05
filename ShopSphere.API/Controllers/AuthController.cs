@@ -33,7 +33,7 @@ public sealed class AuthController : ControllerBase
             var response =
                 await _authenticationService.RegisterCustomerAsync(request);
 
-            await IssueCookieAsync(response);
+            await IssueCookieAsync(response, rememberMe: false);
             return StatusCode(StatusCodes.Status201Created, response);
         }
         catch (InvalidOperationException exception)
@@ -53,7 +53,7 @@ public sealed class AuthController : ControllerBase
         if (response is null)
             return Unauthorized(new { message = "Invalid email or password." });
 
-        await IssueCookieAsync(response);
+        await IssueCookieAsync(response, request.RememberMe);
         return Ok(response);
     }
 
@@ -67,7 +67,7 @@ public sealed class AuthController : ControllerBase
         if (response is null)
             return Unauthorized(new { message = "Invalid email or password." });
 
-        await IssueCookieAsync(response);
+        await IssueCookieAsync(response, request.RememberMe);
         return Ok(response);
     }
 
@@ -81,7 +81,9 @@ public sealed class AuthController : ControllerBase
         return NoContent();
     }
 
-    private Task IssueCookieAsync(AuthResponseDto response)
+    private Task IssueCookieAsync(
+        AuthResponseDto response,
+        bool rememberMe)
     {
         var user = response.User;
 
@@ -99,13 +101,17 @@ public sealed class AuthController : ControllerBase
 
         var principal = new ClaimsPrincipal(identity);
 
+        var properties = new AuthenticationProperties
+        {
+            IsPersistent = rememberMe
+        };
+
+        if (rememberMe)
+            properties.ExpiresUtc = DateTimeOffset.UtcNow.AddDays(14);
+
         return HttpContext.SignInAsync(
             CookieAuthenticationDefaults.AuthenticationScheme,
             principal,
-            new AuthenticationProperties
-            {
-                IsPersistent = false,
-                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30)
-            });
+            properties);
     }
 }

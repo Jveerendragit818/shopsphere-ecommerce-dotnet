@@ -58,7 +58,7 @@ public sealed class ProductRepository : IProductRepository
 
     public async Task<int> AddAsync(Product product)
     {
-        const string sql = """
+        const string productSql = """
             INSERT INTO Products
                 (CategoryId, ProductName, Description, Brand, SKU, Price,
                  DiscountPrice, IsFeatured, IsActive)
@@ -67,13 +67,37 @@ public sealed class ProductRepository : IProductRepository
                  @DiscountPrice, @IsFeatured, @IsActive);
             """;
 
+        const string inventorySql = """
+            INSERT INTO Inventory (ProductId)
+            VALUES (@ProductId);
+            """;
+
         await using var connection =
             await _connectionFactory.CreateOpenConnectionAsync();
-        await using var command = new MySqlCommand(sql, connection);
-        AddProductParameters(command, product);
-        await command.ExecuteNonQueryAsync();
+        using var transaction = connection.BeginTransaction();
 
-        return checked((int)command.LastInsertedId);
+        try
+        {
+            await using var productCommand =
+                new MySqlCommand(productSql, connection, transaction);
+            AddProductParameters(productCommand, product);
+            await productCommand.ExecuteNonQueryAsync();
+
+            var productId = checked((int)productCommand.LastInsertedId);
+
+            await using var inventoryCommand =
+                new MySqlCommand(inventorySql, connection, transaction);
+            inventoryCommand.Parameters.AddWithValue("@ProductId", productId);
+            await inventoryCommand.ExecuteNonQueryAsync();
+
+            transaction.Commit();
+            return productId;
+        }
+        catch
+        {
+            transaction.Rollback();
+            throw;
+        }
     }
 
     public async Task<bool> UpdateAsync(Product product)

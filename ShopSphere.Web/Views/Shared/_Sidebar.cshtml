@@ -133,14 +133,14 @@
                 </a>
             </div>
 
-            <div class="ss-sidebar-section ss-sidebar-section-last">
-                <a href="#" class="ss-sidebar-link ss-sidebar-logout ss-demo-link">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M10 5H6v14h4M14 8l4 4-4 4M8 12h10" />
-                    </svg>
-                    <span>Logout</span>
-                </a>
-            </div>
+<form asp-controller="Account" asp-action="Logout" method="post">
+    <button type="submit" class="ss-sidebar-link ss-sidebar-logout">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10 5H6v14h4M14 8l4 4-4 4M8 12h10" />
+        </svg>
+        <span>Logout</span>
+    </button>
+</form>
         </nav>
     </div>
 </aside>

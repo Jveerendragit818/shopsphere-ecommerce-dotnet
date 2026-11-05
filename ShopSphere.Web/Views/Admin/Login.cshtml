@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewData["Title"] = "Admin Login";
+}
+
+<section class="ss-auth-page">
+    <div class="ss-auth-card">
+        <div class="ss-auth-header">
+            <span class="ss-auth-eyebrow">ShopSphere Admin</span>
+            <h1>Admin sign in</h1>
+            <p>Sign in to manage ShopSphere products, orders, and customers.</p>
+        </div>
+
+        @if (ViewBag.LoginError != null)
+        {
+            <div class="ss-auth-error">
+                @ViewBag.LoginError
+            </div>
+        }
+
+        <form asp-controller="Admin"
+              asp-action="Login"
+              method="post"
+              class="ss-auth-form">
+            <div class="ss-form-group">
+                <label for="email">Email Address</label>
+                <div class="ss-input-wrap">
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           value="@ViewBag.Email"
+                           placeholder="Enter your admin email"
+                           required />
+                </div>
+            </div>
+
+            <div class="ss-form-group">
+                <label for="password">Password</label>
+                <div class="ss-input-wrap">
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="Enter your password"
+                           required />
+                </div>
+            </div>
+
+            <div class="ss-auth-options">
+                <label class="ss-check">
+                    <input type="checkbox" name="rememberMe" value="true" />
+                    <span>Remember me</span>
+                </label>
+            </div>
+
+            <button type="submit" class="ss-auth-submit">
+                Sign In
+            </button>
+        </form>
+
+        <div class="ss-auth-divider">
+            <span>Customer?</span>
+        </div>
+
+        <a asp-controller="Account"
+           asp-action="Login"
+           class="ss-auth-register">
+            Go to customer sign in
+        </a>
+    </div>
+</section>
