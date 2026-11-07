@@ -8,4 +8,5 @@ public interface IWishlistRepository
     Task<IReadOnlyList<WishlistItem>> GetItemsAsync(int wishlistId);
     Task<int> AddItemAsync(WishlistItem item);
     Task<bool> RemoveItemAsync(int wishlistItemId);
+    Task<Wishlist> GetOrCreateByCustomerIdAsync(int customerId);
 }

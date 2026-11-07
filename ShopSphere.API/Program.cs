@@ -49,6 +49,8 @@ builder.Services
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IWishlistService, WishlistService>();
 
 var app = builder.Build();
 

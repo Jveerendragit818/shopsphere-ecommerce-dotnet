@@ -39,6 +39,24 @@ public sealed class WishlistRepository : IWishlistRepository
         };
     }
 
+    public async Task<Wishlist> GetOrCreateByCustomerIdAsync(int customerId)
+    {
+        const string sql = """
+        INSERT INTO Wishlist (CustomerId, CreatedAt)
+        VALUES (@CustomerId, CURRENT_TIMESTAMP)
+        ON DUPLICATE KEY UPDATE WishlistId = LAST_INSERT_ID(WishlistId);
+        """;
+
+        await using var connection =
+            await _connectionFactory.CreateOpenConnectionAsync();
+        await using var command = new MySqlCommand(sql, connection);
+        command.Parameters.AddWithValue("@CustomerId", customerId);
+        await command.ExecuteNonQueryAsync();
+
+        return await GetByCustomerIdAsync(customerId)
+            ?? throw new InvalidOperationException("Wishlist could not be created.");
+    }
+
     public async Task<IReadOnlyList<WishlistItem>> GetItemsAsync(int wishlistId)
     {
         const string sql = """

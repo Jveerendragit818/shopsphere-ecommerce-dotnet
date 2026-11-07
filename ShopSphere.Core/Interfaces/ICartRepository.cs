@@ -10,4 +10,5 @@ public interface ICartRepository
     Task<bool> UpdateItemQuantityAsync(int cartItemId, int quantity);
     Task<bool> RemoveItemAsync(int cartItemId);
     Task<bool> ClearAsync(int cartId);
+    Task<Cart> GetOrCreateByCustomerIdAsync(int customerId);
 }

@@ -45,6 +45,24 @@ public sealed class CartRepository : ICartRepository
         };
     }
 
+    public async Task<Cart> GetOrCreateByCustomerIdAsync(int customerId)
+    {
+        const string sql = """
+        INSERT INTO Cart (CustomerId, CreatedAt, UpdatedAt)
+        VALUES (@CustomerId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+        ON DUPLICATE KEY UPDATE CartId = LAST_INSERT_ID(CartId);
+        """;
+
+        await using var connection =
+            await _connectionFactory.CreateOpenConnectionAsync();
+        await using var command = new MySqlCommand(sql, connection);
+        command.Parameters.AddWithValue("@CustomerId", customerId);
+        await command.ExecuteNonQueryAsync();
+
+        return await GetByCustomerIdAsync(customerId)
+            ?? throw new InvalidOperationException("Cart could not be created.");
+    }
+
     public async Task<IReadOnlyList<CartItem>> GetItemsAsync(int cartId)
     {
         const string sql = """
