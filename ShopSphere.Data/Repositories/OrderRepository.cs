@@ -80,11 +80,61 @@ public sealed class OrderRepository : IOrderRepository
         return orders;
     }
 
+    public async Task<IReadOnlyList<OrderItem>> GetItemsByOrderIdAsync(
+    int orderId)
+    {
+        const string sql = """
+        SELECT OrderItemId, OrderId, ProductId, ProductName, SKU,
+               Quantity, UnitPrice, LineTotal
+        FROM OrderItems
+        WHERE OrderId = @OrderId
+        ORDER BY OrderItemId;
+        """;
+
+        await using var connection =
+            await _connectionFactory.CreateOpenConnectionAsync();
+        await using var command = new MySqlCommand(sql, connection);
+        command.Parameters.AddWithValue("@OrderId", orderId);
+
+        await using var reader = await command.ExecuteReaderAsync();
+        var items = new List<OrderItem>();
+
+        while (await reader.ReadAsync())
+        {
+            var productIdIndex = reader.GetOrdinal("ProductId");
+            var skuIndex = reader.GetOrdinal("SKU");
+
+            items.Add(new OrderItem
+            {
+                OrderItemId = reader.GetInt32(reader.GetOrdinal("OrderItemId")),
+                OrderId = reader.GetInt32(reader.GetOrdinal("OrderId")),
+                ProductId = reader.IsDBNull(productIdIndex)
+                    ? null
+                    : reader.GetInt32(productIdIndex),
+                ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                SKU = reader.IsDBNull(skuIndex)
+                    ? null
+                    : reader.GetString(skuIndex),
+                Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),
+                UnitPrice = reader.GetDecimal(reader.GetOrdinal("UnitPrice")),
+                LineTotal = reader.GetDecimal(reader.GetOrdinal("LineTotal"))
+            });
+        }
+
+        return items;
+    }
+
     public async Task<int> CreateAsync(
         Order order,
         IReadOnlyList<OrderItem> items,
-        Payment payment)
+        Payment payment,
+        int cartId)
     {
+        if (items.Count == 0)
+            throw new ArgumentException("An order must contain at least one item.");
+        if (cartId <= 0)
+            throw new ArgumentOutOfRangeException(nameof(cartId));
+
         const string orderSql = """
             INSERT INTO Orders
                 (OrderNumber, CustomerId, AddressId, Subtotal, ShippingFee,
@@ -101,6 +151,14 @@ public sealed class OrderRepository : IOrderRepository
                 (@OrderId, @ProductId, @ProductName, @SKU, @Quantity, @UnitPrice, @LineTotal);
             """;
 
+        const string stockSql = """
+            UPDATE Inventory
+            SET StockQuantity = StockQuantity - @Quantity,
+                UpdatedAt = CURRENT_TIMESTAMP
+            WHERE ProductId = @ProductId
+              AND StockQuantity >= @Quantity;
+            """;
+
         const string paymentSql = """
             INSERT INTO Payments
                 (OrderId, PaymentMethod, TransactionReference, Amount,
@@ -108,6 +166,14 @@ public sealed class OrderRepository : IOrderRepository
             VALUES
                 (@OrderId, @PaymentMethod, @TransactionReference, @Amount,
                  @PaymentStatus, @PaymentDate);
+            """;
+
+        const string clearCartSql = """
+            DELETE ci
+            FROM CartItems ci
+            INNER JOIN Cart c ON c.CartId = ci.CartId
+            WHERE ci.CartId = @CartId
+              AND c.CustomerId = @CustomerId;
             """;
 
         await using var connection =
@@ -125,12 +191,23 @@ public sealed class OrderRepository : IOrderRepository
 
             foreach (var item in items)
             {
+                if (item.ProductId is not int productId || item.Quantity <= 0)
+                    throw new InvalidOperationException(
+                        "Order items must have a product and positive quantity.");
+
+                await using var stockCommand =
+                    new MySqlCommand(stockSql, connection, transaction);
+                stockCommand.Parameters.AddWithValue("@ProductId", productId);
+                stockCommand.Parameters.AddWithValue("@Quantity", item.Quantity);
+
+                if (await stockCommand.ExecuteNonQueryAsync() != 1)
+                    throw new InvalidOperationException(
+                        $"Insufficient stock for product {productId}.");
+
                 await using var itemCommand =
                     new MySqlCommand(itemSql, connection, transaction);
-
                 itemCommand.Parameters.AddWithValue("@OrderId", orderId);
-                itemCommand.Parameters.AddWithValue(
-                    "@ProductId", (object?)item.ProductId ?? DBNull.Value);
+                itemCommand.Parameters.AddWithValue("@ProductId", productId);
                 itemCommand.Parameters.AddWithValue("@ProductName", item.ProductName);
                 itemCommand.Parameters.AddWithValue(
                     "@SKU", (object?)item.SKU ?? DBNull.Value);
@@ -156,8 +233,18 @@ public sealed class OrderRepository : IOrderRepository
                 "@PaymentDate", (object?)payment.PaymentDate ?? DBNull.Value);
 
             await paymentCommand.ExecuteNonQueryAsync();
-            transaction.Commit();
 
+            await using var clearCartCommand =
+                new MySqlCommand(clearCartSql, connection, transaction);
+            clearCartCommand.Parameters.AddWithValue("@CartId", cartId);
+            clearCartCommand.Parameters.AddWithValue(
+                "@CustomerId", order.CustomerId);
+
+            if (await clearCartCommand.ExecuteNonQueryAsync() != items.Count)
+                throw new InvalidOperationException(
+                    "The cart changed during checkout. Please try again.");
+
+            transaction.Commit();
             return orderId;
         }
         catch

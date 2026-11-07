@@ -10,6 +10,8 @@ public interface IOrderRepository
     Task<int> CreateAsync(
         Order order,
         IReadOnlyList<OrderItem> items,
-        Payment payment);
+        Payment payment,
+        int cartId);
     Task<bool> UpdateStatusAsync(int orderId, string orderStatus);
+    Task<IReadOnlyList<OrderItem>> GetItemsByOrderIdAsync(int orderId);
 }
