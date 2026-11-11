@@ -88,7 +88,7 @@ public sealed class OrdersController : ControllerBase
             customerId.Value,
             orderId);
 
-        if (order is null)
+        if (order is null)  
             return NotFound();
 
         var items = await _orderService.GetCustomerOrderItemsAsync(
