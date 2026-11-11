@@ -81,15 +81,15 @@ public sealed class OrderRepository : IOrderRepository
     }
 
     public async Task<IReadOnlyList<OrderItem>> GetItemsByOrderIdAsync(
-    int orderId)
+        int orderId)
     {
         const string sql = """
-        SELECT OrderItemId, OrderId, ProductId, ProductName, SKU,
-               Quantity, UnitPrice, LineTotal
-        FROM OrderItems
-        WHERE OrderId = @OrderId
-        ORDER BY OrderItemId;
-        """;
+            SELECT OrderItemId, OrderId, ProductId, ProductName, SKU,
+                   Quantity, UnitPrice, LineTotal
+            FROM OrderItems
+            WHERE OrderId = @OrderId
+            ORDER BY OrderItemId;
+            """;
 
         await using var connection =
             await _connectionFactory.CreateOpenConnectionAsync();
@@ -159,6 +159,13 @@ public sealed class OrderRepository : IOrderRepository
               AND StockQuantity >= @Quantity;
             """;
 
+        const string stockAuditSql = """
+            INSERT INTO AuditLogs
+                (Action, EntityName, EntityId, Details)
+            VALUES
+                ('StockDeducted', 'Inventory', @ProductId, @Details);
+            """;
+
         const string paymentSql = """
             INSERT INTO Payments
                 (OrderId, PaymentMethod, TransactionReference, Amount,
@@ -203,6 +210,15 @@ public sealed class OrderRepository : IOrderRepository
                 if (await stockCommand.ExecuteNonQueryAsync() != 1)
                     throw new InvalidOperationException(
                         $"Insufficient stock for product {productId}.");
+
+                await using var stockAuditCommand =
+                    new MySqlCommand(stockAuditSql, connection, transaction);
+                stockAuditCommand.Parameters.AddWithValue(
+                    "@ProductId", productId.ToString());
+                stockAuditCommand.Parameters.AddWithValue(
+                    "@Details",
+                    $"Order {orderId} deducted {item.Quantity} units.");
+                await stockAuditCommand.ExecuteNonQueryAsync();
 
                 await using var itemCommand =
                     new MySqlCommand(itemSql, connection, transaction);

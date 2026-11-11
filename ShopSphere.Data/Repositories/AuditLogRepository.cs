@@ -94,4 +94,38 @@ public sealed class AuditLogRepository : IAuditLogRepository
         var index = reader.GetOrdinal(columnName);
         return reader.IsDBNull(index) ? null : reader.GetString(index);
     }
+
+    public async Task<IReadOnlyList<AuditLog>> GetByEntityAsync(
+    string entityName,
+    string entityId,
+    int count)
+    {
+        if (count <= 0)
+            throw new ArgumentOutOfRangeException(nameof(count));
+
+        const string sql = """
+        SELECT AuditLogId, UserId, Action, EntityName, EntityId,
+               Details, CreatedAt
+        FROM AuditLogs
+        WHERE EntityName = @EntityName
+          AND EntityId = @EntityId
+        ORDER BY CreatedAt DESC
+        LIMIT @Count;
+        """;
+
+        await using var connection =
+            await _connectionFactory.CreateOpenConnectionAsync();
+        await using var command = new MySqlCommand(sql, connection);
+        command.Parameters.AddWithValue("@EntityName", entityName);
+        command.Parameters.AddWithValue("@EntityId", entityId);
+        command.Parameters.AddWithValue("@Count", count);
+
+        await using var reader = await command.ExecuteReaderAsync();
+        var logs = new List<AuditLog>();
+
+        while (await reader.ReadAsync())
+            logs.Add(ReadAuditLog(reader));
+
+        return logs;
+    }
 }

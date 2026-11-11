@@ -54,4 +54,15 @@ public sealed class InventoryController : ControllerBase
 
         return updated ? NoContent() : NotFound();
     }
+
+    [HttpGet("{productId:int}/history")]
+    public async Task<IActionResult> GetHistory(
+    int productId,
+    [FromQuery] int count = 50)
+    {
+        var history =
+            await _inventoryService.GetHistoryAsync(productId, count);
+
+        return Ok(history);
+    }
 }   
