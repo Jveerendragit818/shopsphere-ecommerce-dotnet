@@ -54,6 +54,14 @@ builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IAddressService, AddressService>();
+builder.Services.AddScoped<
+    IAdminDashboardRepository,
+    AdminDashboardRepository>();
+
+builder.Services.AddScoped<
+    IAdminDashboardService,
+    AdminDashboardService>();
+
 
 var app = builder.Build();
 
