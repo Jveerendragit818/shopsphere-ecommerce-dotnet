@@ -62,18 +62,20 @@ public sealed class NotificationRepository : INotificationRepository
         return checked((int)command.LastInsertedId);
     }
 
-    public async Task<bool> MarkAsReadAsync(int notificationId)
+    public async Task<bool> MarkAsReadAsync(int notificationId, int userId)
     {
         const string sql = """
-            UPDATE Notifications
-            SET IsRead = TRUE
-            WHERE NotificationId = @NotificationId;
-            """;
+        UPDATE Notifications
+        SET IsRead = TRUE
+        WHERE NotificationId = @NotificationId
+          AND UserId = @UserId;
+        """;
 
         await using var connection =
             await _connectionFactory.CreateOpenConnectionAsync();
         await using var command = new MySqlCommand(sql, connection);
         command.Parameters.AddWithValue("@NotificationId", notificationId);
+        command.Parameters.AddWithValue("@UserId", userId);
 
         return await command.ExecuteNonQueryAsync() > 0;
     }

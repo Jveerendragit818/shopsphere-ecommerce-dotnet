@@ -61,6 +61,8 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IAdminDashboardService,
     AdminDashboardService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 
 
 var app = builder.Build();
